@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="bg-dark-900 dark:bg-black text-white">
       <div className="container-custom py-12">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -18,10 +18,10 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-2xl font-bold text-primary-400">DevPortfolio</h3>
+            <h3 className="text-2xl font-bold text-primary-400">김동현</h3>
             <p className="text-gray-400 max-w-md">
-              사용자 경험을 중시하는 프론트엔드 개발자입니다.
-              아름답고 기능적인 웹 애플리케이션을 만드는 것을 좋아합니다.
+              프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는 개발자입니다.
+              TypeScript를 기반으로 Vue3와 React를 주력으로 사용하며, 사용자 중심의 웹 애플리케이션을 개발합니다.
             </p>
             <div className="flex items-center gap-2 text-gray-400">
               <span>Made with</span>
@@ -69,7 +69,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-white">연락처</h4>
             <div className="space-y-2 text-gray-400">
-              <p>hello@example.com</p>
+              <p>donghyun.kim@example.com</p>
               <p>+82 10-1234-5678</p>
               <p>서울, 대한민국</p>
             </div>
@@ -85,7 +85,7 @@ const Footer = () => {
           className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-gray-400 text-sm">
-            © 2024 DevPortfolio. All rights reserved.
+            © 2024 김동현. All rights reserved.
           </p>
           <motion.button
             onClick={scrollToTop}

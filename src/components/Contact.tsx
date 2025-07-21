@@ -27,8 +27,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: '이메일',
-      value: 'hello@example.com',
-      href: 'mailto:hello@example.com',
+      value: 'donghyun.kim@example.com',
+      href: 'mailto:donghyun.kim@example.com',
     },
     {
       icon: Phone,
@@ -64,12 +64,12 @@ const Contact = () => {
             연락하기
           </h2>
           <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto">
-            프로젝트나 협업에 대해 이야기하고 싶으시다면 언제든 연락해주세요.
+            새로운 프로젝트나 협업 기회에 대해 이야기하고 싶으시다면 언제든 연락해주세요.
             빠른 응답을 드리겠습니다.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -225,7 +225,7 @@ const Contact = () => {
               <h4 className="text-xl font-bold mb-2">현재 상태</h4>
               <p className="mb-4">
                 새로운 프로젝트와 협업 기회를 찾고 있습니다.
-                흥미로운 제안이 있으시면 언제든 연락해주세요!
+                흥미로운 제안이나 기술적인 논의가 있으시면 언제든 연락해주세요!
               </p>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>

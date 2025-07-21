@@ -7,32 +7,32 @@ const Skills = () => {
       title: 'Frontend',
       icon: Code,
       skills: [
-        { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'Next.js', level: 80 },
-        { name: 'Vue.js', level: 75 },
+        { name: 'TypeScript', level: 90 },
+        { name: 'Vue3', level: 85 },
+        { name: 'React', level: 80 },
         { name: 'HTML/CSS', level: 95 },
+        { name: 'JavaScript', level: 90 },
       ],
     },
     {
       title: 'Styling & UI',
       icon: Palette,
       skills: [
-        { name: 'Tailwind CSS', level: 90 },
-        { name: 'Styled Components', level: 80 },
-        { name: 'Framer Motion', level: 85 },
-        { name: 'Material-UI', level: 75 },
-        { name: 'CSS Grid/Flexbox', level: 95 },
+        { name: 'Tailwind CSS', level: 85 },
+        { name: 'Vue Router', level: 80 },
+        { name: 'Pinia', level: 75 },
+        { name: 'Framer Motion', level: 70 },
+        { name: 'CSS Grid/Flexbox', level: 90 },
       ],
     },
     {
       title: 'Backend & Database',
       icon: Database,
       skills: [
+        { name: 'NestJS', level: 75 },
+        { name: 'Java Spring', level: 70 },
         { name: 'Node.js', level: 80 },
-        { name: 'Express.js', level: 75 },
-        { name: 'PostgreSQL', level: 70 },
-        { name: 'MongoDB', level: 65 },
+        { name: 'PostgreSQL', level: 65 },
         { name: 'REST APIs', level: 85 },
       ],
     },
@@ -40,11 +40,11 @@ const Skills = () => {
       title: 'Tools & Others',
       icon: Zap,
       skills: [
-        { name: 'Git', level: 90 },
+        { name: 'Git', level: 85 },
         { name: 'Docker', level: 70 },
-        { name: 'AWS', level: 65 },
-        { name: 'Figma', level: 75 },
-        { name: 'Jest', level: 80 },
+        { name: 'Vite', level: 80 },
+        { name: 'Webpack', level: 75 },
+        { name: 'Jest', level: 75 },
       ],
     },
   ];
@@ -63,11 +63,12 @@ const Skills = () => {
             기술 스택
           </h2>
           <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto">
-            다양한 기술을 활용하여 최고의 사용자 경험을 제공합니다. 지속적으로 새로운 기술을 학습하고 있습니다.
+            프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는 기술 스택을 보유하고 있습니다.
+            지속적으로 새로운 기술을 학습하며 더 나은 개발자로 성장하고 있습니다.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -132,9 +133,9 @@ const Skills = () => {
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              'JavaScript', 'Python', 'GraphQL', 'Redux', 'Webpack', 'Vite',
+              'Vuex', 'Composition API', 'Options API', 'Redux', 'GraphQL', 'MongoDB',
               'Sass', 'Bootstrap', 'Ant Design', 'Storybook', 'Cypress', 'ESLint',
-              'Prettier', 'Husky', 'CI/CD', 'Agile', 'Scrum', 'Jira'
+              'Prettier', 'Husky', 'CI/CD', 'Agile', 'Scrum', 'Jira', 'MySQL', 'Redis'
             ].map((skill, index) => (
               <motion.div
                 key={skill}

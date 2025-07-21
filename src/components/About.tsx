@@ -3,9 +3,9 @@ import { User, Code, Coffee, Heart } from 'lucide-react';
 
 const About = () => {
   const stats = [
-    { icon: Code, label: '프로젝트 완료', value: '50+' },
+    { icon: Code, label: '프로젝트 완료', value: '35+' },
     { icon: Coffee, label: '커피 컵', value: '1000+' },
-    { icon: Heart, label: '만족한 클라이언트', value: '20+' },
+    { icon: Heart, label: '만족한 클라이언트', value: '18+' },
     { icon: User, label: '경력 연차', value: '3+' },
   ];
 
@@ -23,7 +23,8 @@ const About = () => {
             저에 대해 알아보세요
           </h2>
           <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto">
-            열정적인 프론트엔드 개발자로서 사용자 중심의 웹 애플리케이션을 만드는 것을 좋아합니다.
+            프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는 개발자입니다.
+            사용자 경험을 중시하며, 깔끔하고 효율적인 코드 작성을 지향합니다.
           </p>
         </motion.div>
 
@@ -38,13 +39,13 @@ const About = () => {
           >
             {/* Profile Image */}
             <div className="relative">
-              <div className="w-80 h-80 mx-auto rounded-full bg-gradient-to-br from-primary-400 to-primary-600 p-1">
+              <div className="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full bg-gradient-to-br from-primary-400 to-primary-600 p-1">
                 <div className="w-full h-full rounded-full bg-gray-200 dark:bg-dark-700 flex items-center justify-center">
-                  <User size={120} className="text-gray-400 dark:text-gray-500" />
+                  <User size={80} className="md:w-[120px] md:h-[120px] text-gray-400 dark:text-gray-500" />
                 </div>
               </div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-primary-500 rounded-full flex items-center justify-center">
-                <Code size={32} className="text-white" />
+              <div className="absolute -bottom-4 -right-4 w-20 h-20 md:w-24 md:h-24 bg-primary-500 rounded-full flex items-center justify-center">
+                <Code size={24} className="md:w-8 md:h-8 text-white" />
               </div>
             </div>
 
@@ -81,15 +82,15 @@ const About = () => {
           >
             <div>
               <h3 className="text-2xl font-bold text-dark-900 dark:text-white mb-4">
-                안녕하세요! 저는 개발자입니다 👨‍💻
+                안녕하세요! 저는 김동현입니다 👨‍💻
               </h3>
               <p className="text-lg text-dark-600 dark:text-dark-300 mb-4">
-                3년간의 프론트엔드 개발 경험을 바탕으로 사용자 경험을 중시하는 웹 애플리케이션을 개발하고 있습니다.
-                React, TypeScript, Next.js 등의 최신 기술을 활용하여 성능과 접근성을 모두 고려한 솔루션을 제공합니다.
+                3년간의 개발 경험을 통해 프론트엔드 개발에 특화되어 있으면서도, 백엔드 개발까지 가능한 풀스택 개발자로 성장했습니다.
+                TypeScript를 기반으로 Vue3와 React를 주력으로 사용하며, NestJS와 Java Spring으로 서버 개발도 진행합니다.
               </p>
               <p className="text-lg text-dark-600 dark:text-dark-300">
-                새로운 기술을 배우는 것을 좋아하며, 항상 더 나은 사용자 경험을 제공하기 위해 노력하고 있습니다.
-                팀워크를 중시하며, 다른 개발자들과의 협업을 통해 더 좋은 결과물을 만들어내는 것을 즐깁니다.
+                사용자 경험을 최우선으로 생각하며, 깔끔하고 유지보수가 용이한 코드 작성을 지향합니다.
+                새로운 기술 학습에 적극적이며, 팀 협업을 통해 더 나은 결과물을 만들어내는 것을 즐깁니다.
               </p>
             </div>
 
@@ -99,7 +100,7 @@ const About = () => {
                 주요 기술 스택
               </h4>
               <div className="flex flex-wrap gap-2">
-                {['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Node.js', 'PostgreSQL'].map((skill, index) => (
+                {['TypeScript', 'Vue3', 'React', 'NestJS', 'Java Spring', 'Node.js'].map((skill, index) => (
                   <motion.span
                     key={skill}
                     initial={{ opacity: 0, scale: 0.8 }}

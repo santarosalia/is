@@ -28,16 +28,16 @@ const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark-900/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-700"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-dark-900/90 backdrop-blur-md border-b border-gray-200 dark:border-dark-700"
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold text-primary-600"
+            className="text-2xl font-bold text-primary-600 ml-2"
           >
-            DevPortfolio
+            김동현
           </motion.div>
 
           {/* Desktop Navigation */}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ChevronDown, Github,  Mail} from 'lucide-react';
 
 const Hero = () => {
   const scrollToNext = () => {
@@ -36,11 +36,11 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-dark-900 dark:text-white mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-dark-900 dark:text-white mb-6"
           >
             저는{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">
-              프론트엔드 개발자
+              김동현
             </span>
             입니다
           </motion.h1>
@@ -52,8 +52,8 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl md:text-2xl text-dark-600 dark:text-dark-300 mb-8 max-w-3xl mx-auto"
           >
-            사용자 경험을 중시하며, 아름답고 기능적인 웹 애플리케이션을 만드는 것을 좋아합니다.
-            React, TypeScript, 그리고 최신 웹 기술을 활용하여 혁신적인 솔루션을 개발합니다.
+            프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는 풀스택 개발자입니다.
+            TypeScript, Vue3, React를 주력으로 하며, NestJS와 Java Spring으로 서버 개발도 가능합니다.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -98,16 +98,7 @@ const Hero = () => {
               <Github size={24} />
             </motion.a>
             <motion.a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, y: -2 }}
-              className="p-3 rounded-full bg-gray-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
-            >
-              <Linkedin size={24} />
-            </motion.a>
-            <motion.a
-              href="mailto:hello@example.com"
+              href="mailto:donghyun.kim@example.com"
               whileHover={{ scale: 1.1, y: -2 }}
               className="p-3 rounded-full bg-gray-100 dark:bg-dark-800 text-dark-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
             >
@@ -120,7 +111,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            className="absolute left-1/2 transform -translate-x-1/2 z-10"
           >
             <motion.button
               onClick={scrollToNext}
