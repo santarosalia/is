@@ -52,7 +52,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                 {/* Header */}
                 <div className="relative h-64 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/20 dark:to-primary-800/20">
                   <div className="absolute inset-0 flex items-center justify-center">
-                    {project.image? <img src={project.image} alt={project.title} className="w-full h-full object-cover" /> : <div className="text-8xl">🚀</div>}
+                    {project.thumbnail? <img src={project.thumbnail} alt={project.title} className="" /> : <div className="text-8xl">🚀</div>}
                   </div>
                   <div className="absolute inset-0 bg-black/20"></div>
                   
@@ -136,7 +136,28 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                       {project.detailedDescription || project.description}
                     </p>
                   </div>
-
+{/* Project Demo GIF */}
+<div className="mb-6">
+                    <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">
+                      프로젝트 데모
+                    </h3>
+                    <div className="relative w-full h-64 md:h-80 bg-gray-100 dark:bg-dark-700 rounded-lg overflow-hidden">
+                      {project.image ? (
+                        <img 
+                          src={project.image} 
+                          alt={`${project.title} 데모`} 
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-dark-400 dark:text-dark-500">
+                          <div className="text-center">
+                            <div className="text-4xl mb-2">🎬</div>
+                            <p className="text-sm">데모 GIF가 준비 중입니다</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   {/* Features */}
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">

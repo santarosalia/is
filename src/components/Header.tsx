@@ -1,20 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X} from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDark(isDarkMode);
-  }, []);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
 
   const navItems = [
     { name: '홈', href: '#home' },
@@ -68,21 +57,6 @@ const Header = () => {
 
           {/* Theme Toggle & Mobile Menu Button */}
           <div className="flex items-center space-x-4">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] border border-white/20 transition-all duration-200 relative overflow-hidden"
-            >
-              <span className="relative z-10">{isDark ? <Sun size={20} /> : <Moon size={20} />}</span>
-              {/* 버튼 글로우 */}
-              <motion.div
-                className="absolute inset-0 bg-white/20 rounded-lg"
-                animate={{ opacity: [0.2, 0.5, 0.2], scale: [1, 1.1, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </motion.button>
-
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] border border-white/20 relative overflow-hidden"
@@ -112,7 +86,7 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-200 drop-shadow-[0_0_6px_rgba(180,180,255,0.7)] hover:text-white hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative"
+                  className="text-gray-200 drop-shadow-[0_0_6px_rgba(180,180,255,0.7)] hover:text-white hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative ml-4"
                 >
                   <span className="relative">
                     {item.name}
