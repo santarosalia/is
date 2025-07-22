@@ -17,7 +17,13 @@ const Header = () => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-br from-black via-gray-900 to-black/80 backdrop-blur-md border-b border-gray-700 shadow-lg"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-2xl"
+      style={{
+        filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.1))',
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.1) 100%)',
+        backdropFilter: 'blur(20px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%)'
+      }}
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
@@ -59,7 +65,13 @@ const Header = () => {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] border border-white/20 relative overflow-hidden"
+              className="md:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] border border-white/30 backdrop-blur-sm relative overflow-hidden"
+              style={{
+                filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.15))',
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.25) 100%)',
+                backdropFilter: 'blur(10px) saturate(140%)',
+                WebkitBackdropFilter: 'blur(10px) saturate(140%)'
+              }}
             >
               <span className="relative z-10">{isMenuOpen ? <X size={20} /> : <Menu size={20} />}</span>
               {/* 버튼 글로우 */}
@@ -78,7 +90,13 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 border-t border-gray-700 bg-gradient-to-br from-black via-gray-900 to-black/80 backdrop-blur-md shadow-lg"
+            className="md:hidden py-4 border-t border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl"
+            style={{
+              filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.08))',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%)',
+              backdropFilter: 'blur(15px) saturate(160%)',
+              WebkitBackdropFilter: 'blur(15px) saturate(160%)'
+            }}
           >
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
