@@ -362,7 +362,7 @@ const Hero = () => {
             className="flex justify-center space-x-6 mb-12"
           >
             <motion.a
-              href="https://github.com"
+              href="https://github.com/santarosalia"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1, y: -2 }}
