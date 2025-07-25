@@ -2,22 +2,9 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
 import ProjectModal from './ProjectModal';
+import type { Project } from '../types/project';
 
-interface Project {
-  title: string;
-  description: string;
-  thumbnail: string;
-  image: string;
-  technologies: string[];
-  github: string;
-  live: string;
-  featured: boolean;
-  detailedDescription?: string;
-  features?: string[];
-  challenges?: string[];
-  duration?: string;
-  teamSize?: string;
-}
+
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -38,7 +25,7 @@ const Projects = () => {
       title: 'Worktro RPA 솔루션 개발',
       description: '웹 기반 RPA 솔루션의 드래그앤드롭 방식의 RPA 프로세스 개발 툴을 개발했습니다.',
       thumbnail: '/worktro_logo.png',
-      image: '/worktro.gif',
+      image: ['/worktro.gif'],
       technologies: ['Vue3', 'TypeScript', 'Java', 'Node.js', 'WebSocket', 'Canvas API'],
       github: 'https://github.com',
       live: 'https://example.com',
@@ -64,7 +51,7 @@ const Projects = () => {
     {
       title: 'NestJS REST API',
       description: 'NestJS와 TypeScript로 개발한 RESTful API 서버입니다. JWT 인증, PostgreSQL 데이터베이스 연동, Swagger를 통한 API 문서화를 구현했습니다.',
-      image: '',
+      image: ['/worktro.gif'],
       thumbnail: '',
       technologies: ['NestJS', 'TypeScript', 'PostgreSQL', 'JWT', 'Swagger'],
       github: 'https://github.com',
@@ -89,7 +76,7 @@ const Projects = () => {
     {
       title: '크롬 확장프로그램 개발',
       description: 'Worktro와 함께 사용하는 크롬 확장프로그램으로, 웹 엘리먼트 선택자 추출, 사용자 액션 프로세스화, CDP Session을 통한 브라우저 자동화 기능을 구현했습니다.',
-      image: '/worktro_logo.png',
+      image: ['/selector.gif','/browserRecorder.gif'],
       thumbnail: '',
       technologies: ['Chrome Extension', 'JavaScript', 'TypeScript', 'CDP', 'WebDriver', 'DOM API'],
       github: 'https://github.com',
@@ -116,7 +103,7 @@ const Projects = () => {
     {
       title: 'OCR 프론트엔드 개발',
       description: '문서 OCR, 테이블 OCR, Canvas API를 활용한 문서 미리보기, 문서 레이블링, 학습 기능, OCR 테스트 기능을 구현한 프론트엔드 모듈을 개발했습니다.',
-      image: '/aicenter.gif',
+      image: ['/aicenter.gif'],
       thumbnail: '/worktro_logo.png',
       technologies: ['Vue3', 'TypeScript', 'Canvas API', 'PDF.js'],
       github: 'https://github.com',
@@ -142,7 +129,7 @@ const Projects = () => {
     {
       title: 'Vue3 + NestJS Full Stack',
       description: 'Vue3 프론트엔드와 NestJS 백엔드를 결합한 풀스택 애플리케이션입니다. Socket.io를 활용한 실시간 채팅, 파일 업로드, 사용자 관리 기능을 구현했습니다.',
-      image: '',
+      image: ['/worktro.gif'],
       thumbnail: '',
       technologies: ['Vue3', 'NestJS', 'TypeScript', 'Socket.io', 'MongoDB'],
       github: 'https://github.com',
@@ -152,7 +139,7 @@ const Projects = () => {
     {
       title: 'React Portfolio',
       description: 'React와 Framer Motion을 활용한 개발자 포트폴리오 웹사이트입니다. 반응형 디자인과 부드러운 애니메이션을 구현하여 사용자 경험을 향상시켰습니다.',
-      image: '',
+      image: ['/worktro.gif'],
       thumbnail: '',
       technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'Vite'],
       github: 'https://github.com',

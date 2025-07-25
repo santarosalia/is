@@ -1,21 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Github, Calendar, Code, Users } from 'lucide-react';
+import type { Project } from '../types/project';
+import { useState } from 'react';
 
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  thumbnail: string;
-  technologies: string[];
-  github: string;
-  live: string;
-  featured: boolean;
-  detailedDescription?: string;
-  features?: string[];
-  challenges?: string[];
-  duration?: string;
-  teamSize?: string;
-}
 
 interface ProjectModalProps {
   project: Project | null;
@@ -24,7 +11,41 @@ interface ProjectModalProps {
 }
 
 const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [direction, setDirection] = useState(0); // -1: left, 1: right
   if (!project) return null;
+
+  // 이미지 배열 길이
+  const imageCount = project.image ? project.image.length : 0;
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDirection(-1);
+    setCurrentImage((prev) => (prev - 1 + imageCount) % imageCount);
+  };
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDirection(1);
+    setCurrentImage((prev) => (prev + 1) % imageCount);
+  };
+
+  // 슬라이드 애니메이션 variants
+  const variants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 300 : -300,
+      opacity: 0,
+      position: 'absolute' as const,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      position: 'relative' as const,
+    },
+    exit: (dir: number) => ({
+      x: dir < 0 ? 300 : -300,
+      opacity: 0,
+      position: 'absolute' as const,
+    }),
+  };
 
   return (
     <AnimatePresence>
@@ -138,26 +159,78 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                   </div>
 {/* Project Demo GIF */}
 <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">
-                      프로젝트 데모
-                    </h3>
-                    <div className="relative w-full h-64 md:h-80 bg-gray-100 dark:bg-dark-700 rounded-lg overflow-hidden">
-                      {project.image ? (
-                        <img 
-                          src={project.image} 
-                          alt={`${project.title} 데모`} 
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full text-dark-400 dark:text-dark-500">
-                          <div className="text-center">
-                            <div className="text-4xl mb-2">🎬</div>
-                            <p className="text-sm">데모 GIF가 준비 중입니다</p>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+  <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">
+    프로젝트 데모
+  </h3>
+  <div className="relative w-full h-64 md:h-80 bg-gray-100 dark:bg-dark-700 rounded-lg overflow-hidden flex items-center justify-center">
+    {project.image && project.image.length > 0 ? (
+      <>
+        <div className="w-full h-full relative flex items-center justify-center">
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.img
+              key={currentImage}
+              src={project.image[currentImage]}
+              alt={`${project.title} 데모 ${currentImage + 1}`}
+              className="w-full h-full object-contain absolute left-0 top-0 cursor-grab"
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ type: 'spring', stiffness: 300, damping: 30, duration: 0.4 }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.8}
+              onDragEnd={(e, info) => {
+                if (info.offset.x < -100) {
+                  setDirection(1);
+                  setCurrentImage((prev) => (prev + 1) % imageCount);
+                } else if (info.offset.x > 100) {
+                  setDirection(-1);
+                  setCurrentImage((prev) => (prev - 1 + imageCount) % imageCount);
+                }
+              }}
+            />
+          </AnimatePresence>
+        </div>
+        {project.image.length > 1 && (
+          <>
+            {/* 이전 버튼 */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 dark:bg-dark-800/70 p-2 rounded-full shadow hover:bg-white/90 dark:hover:bg-dark-800 z-10"
+            >
+              {'<'}
+            </button>
+            {/* 다음 버튼 */}
+            <button
+              onClick={handleNext}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 dark:bg-dark-800/70 p-2 rounded-full shadow hover:bg-white/90 dark:hover:bg-dark-800 z-10"
+            >
+              {'>'}
+            </button>
+            {/* 인디케이터 */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+              {project.image.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-2 h-2 rounded-full ${idx === currentImage ? 'bg-primary-600' : 'bg-gray-300 dark:bg-dark-500'}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </>
+    ) : (
+      <div className="flex items-center justify-center h-full text-dark-400 dark:text-dark-500">
+        <div className="text-center">
+          <div className="text-4xl mb-2">🎬</div>
+          <p className="text-sm">데모 GIF가 준비 중입니다</p>
+        </div>
+      </div>
+    )}
+  </div>
+</div>
                   {/* Features */}
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">
