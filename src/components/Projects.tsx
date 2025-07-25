@@ -55,7 +55,7 @@ const Projects = () => {
               onClick={() => openModal(project)}
             >
               {/* Project Image */}
-              <div className="relative h-64 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/20 dark:to-primary-800/20">
+              <div className="relative h-64 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-0 dark:to-primary-400">
                 <div className="absolute inset-0 flex items-center justify-center">
                 {project.thumbnail? <img src={project.thumbnail} alt={project.title} className="" /> : <div className="text-6xl">🚀</div>}
              
@@ -86,15 +86,7 @@ const Projects = () => {
 
                 {/* Project Links */}
                 <div className="flex gap-4" onClick={(e) => e.stopPropagation()}>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
-                  >
-                    <Github size={18} />
-                    <span className="text-sm">GitHub</span>
-                  </a>
+                  {project.github ? <a href={project.github} target="_blank" rel="noopener noreferrer">GitHub</a> : null}
                   <a
                     href={project.live}
                     target="_blank"
@@ -159,14 +151,14 @@ const Projects = () => {
 
                 {/* Project Links */}
                 <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
-                  <a
+                  {project.github ? <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
                   >
                     <Github size={16} />
-                  </a>
+                  </a> : null}
                   <a
                     href={project.live}
                     target="_blank"

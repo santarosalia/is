@@ -29,26 +29,26 @@ export const PROJECTS: Project[] = [
         ]
     },
     {
-      title: 'NestJS REST API',
-      description: 'NestJS와 TypeScript로 개발한 RESTful API 서버입니다. JWT 인증, PostgreSQL 데이터베이스 연동, Swagger를 통한 API 문서화를 구현했습니다.',
+      title: 'HR-Expert 솔루션 개발',
+      description: 'Vue3 + NestJS 기반의 AI 인사 솔루션입니다. 문서 추출, 표절검사, 주요부분 하이라이트, 인터뷰 질문생성 기능을 제공하여 채용 프로세스를 효율적으로 지원합니다.',
       image: ['/worktro.gif'],
       thumbnail: '',
-      technologies: ['NestJS', 'TypeScript', 'PostgreSQL', 'JWT', 'Swagger'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      technologies: ['NestJS', 'TypeScript', 'PostgreSQL', 'JWT', 'Swagger', 'Vue3', 'Prisma'],
+      github: '',
+      live: '',
       featured: true,
-      detailedDescription: 'NestJS 프레임워크를 사용하여 확장 가능하고 유지보수가 용이한 RESTful API를 구축했습니다. TypeORM을 활용한 PostgreSQL 데이터베이스 연동, JWT를 통한 사용자 인증, Swagger를 통한 API 문서 자동 생성 기능을 구현했습니다. 모듈화된 구조로 각 기능별로 분리하여 개발했습니다.',
+      detailedDescription: 'NestJS 프레임워크를 사용하여 확장 가능하고 유지보수가 용이한 RESTful API를 구축했습니다. Prisma를 활용한 PostgreSQL 데이터베이스 연동, JWT를 통한 사용자 인증, Swagger를 통한 API 문서 자동 생성 기능을 구현했습니다. 모듈화된 구조로 각 기능별로 분리하여 개발했습니다.',
       features: [
         '사용자 인증 및 권한 관리',
         'CRUD API 엔드포인트',
-        '데이터베이스 연동 및 마이그레이션',
+        '데이터베이스 연동',
         'API 문서 자동 생성',
         '에러 핸들링 및 로깅',
         '환경 설정 관리'
       ],
       challenges: [
         'NestJS 아키텍처 설계 및 모듈화',
-        'TypeORM을 활용한 복잡한 쿼리 최적화',
+        'Prisma를 활용한 데이터베이스 연동',
         'JWT 토큰 기반 인증 시스템 구현',
         'API 보안 및 입력 검증'
       ]
@@ -58,9 +58,9 @@ export const PROJECTS: Project[] = [
       description: 'Worktro와 함께 사용하는 크롬 확장프로그램으로, 웹 엘리먼트 선택자 추출, 사용자 액션 프로세스화, CDP Session을 통한 브라우저 자동화 기능을 구현했습니다.',
       image: ['/selector.gif','/browserRecorder.gif'],
       thumbnail: '',
-      technologies: ['Chrome Extension', 'JavaScript', 'TypeScript', 'CDP', 'WebDriver', 'DOM API'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      technologies: ['Chrome API', 'JavaScript', 'TypeScript', 'CDP', 'DOM API'],
+      github: '',
+      live: 'https://chromewebstore.google.com/detail/worktronics-browser-autom/okgoldnaebbnedldbbdambomgnpipphj',
       featured: false,
       detailedDescription: 'Worktro RPA 솔루션과 함께 사용하는 크롬 확장프로그램을 개발했습니다. 클라이언트에서 Worktro 프로세스 개발 시 웹 엘리먼트 선택자를 쉽게 추출할 수 있는 기능과 사용자 액션을 프로세스화하는 기능을 구현했습니다. 또한 Selenium을 대체할 수 있는 CDP(Chrome DevTools Protocol) Session을 제어하여 WebDriver 없이 브라우저 자동화를 가능하게 했습니다.',
       features: [
@@ -77,7 +77,8 @@ export const PROJECTS: Project[] = [
         'DOM 요소 선택자 최적화',
         'Worktro와의 데이터 통신',
         '크로스 브라우저 호환성',
-        '보안 정책 준수'
+        'Manifest V3 적용',
+        'Native Messaging 활용 클라이언트 앱 연동'
       ]
     },
     {
@@ -107,23 +108,88 @@ export const PROJECTS: Project[] = [
       ]
     },
     {
-      title: 'Vue3 + NestJS Full Stack',
-      description: 'Vue3 프론트엔드와 NestJS 백엔드를 결합한 풀스택 애플리케이션입니다. Socket.io를 활용한 실시간 채팅, 파일 업로드, 사용자 관리 기능을 구현했습니다.',
-      image: ['/worktro.gif'],
-      thumbnail: '',
-      technologies: ['Vue3', 'NestJS', 'TypeScript', 'Socket.io', 'MongoDB'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      title: 'Work Assistant 프로세스 실행기',
+      description: 'Worktro와 결합하여 사용 가능한 프로세스 실행기입니다. C# WebView에 Vue3 + Vuetify로 UI를 구성하여 기존 백엔드에 새로운 화면을 제공하고, 배포된 프로세스를 즉시 실행할 수 있습니다.',
+      image: ['/workAssistant.gif'],
+      thumbnail: '/worktro_logo.png',
+      technologies: ['C#', 'WebView', 'Vue3', 'Vuetify', 'TypeScript'],
+      github: '',
+      live: 'https://wa.digitalworker.co.kr',
       featured: false,
+      detailedDescription: 'Worktro RPA 솔루션과 연동되는 프로세스 실행기를 개발했습니다. C# WebView를 기반으로 하여 Vue3와 Vuetify를 활용한 모던한 UI를 구성했습니다. 기존 Worktro 백엔드 시스템과 연동하여 배포된 RPA 프로세스를 즉시 실행할 수 있는 독립적인 실행 환경을 제공합니다.',
+      features: [
+        'C# WebView 기반 독립 실행 환경',
+        'Vue3 + Vuetify 모던 UI 구성',
+        'Worktro 프로세스 즉시 실행',
+        '실시간 프로세스 모니터링',
+        '사용자 친화적 인터페이스',
+        '기존 백엔드 시스템과의 원활한 연동'
+      ],
+      challenges: [
+        'C# WebView와 Vue3 통합',
+        'Vuetify 컴포넌트 최적화',
+        'Worktro 백엔드 API 연동',
+        '프로세스 실행 상태 관리',
+        '크로스 플랫폼 호환성',
+        '실시간 데이터 동기화'
+      ]
     },
     {
-      title: 'React Portfolio',
-      description: 'React와 Framer Motion을 활용한 개발자 포트폴리오 웹사이트입니다. 반응형 디자인과 부드러운 애니메이션을 구현하여 사용자 경험을 향상시켰습니다.',
-      image: ['/worktro.gif'],
-      thumbnail: '',
-      technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'Vite'],
-      github: 'https://github.com',
-      live: 'https://example.com',
+      title: 'WUI 디자인 컴포넌트 라이브러리',
+      description: 'Vue3 기반의 Worktro 디자인 시스템 컴포넌트 라이브러리입니다. 30개의 다양한 컴포넌트와 MUI 그리드 시스템을 참고한 레이아웃 시스템을 개발하여 일관된 UI/UX를 제공합니다.',
+      image: ['/worktro_logo.png'],
+      thumbnail: '/worktro_logo.png',
+      technologies: ['Vue3', 'TypeScript', 'Vite', 'Storybook', 'NPM', 'Nexus Repository'],
+      github: '',
+      live: '',
+      featured: true,
+      detailedDescription: 'Worktro 프로젝트의 일관된 디자인 시스템을 위해 Vue3 기반의 컴포넌트 라이브러리를 개발했습니다. 총 30개의 다양한 컴포넌트를 구현하여 버튼, 폼, 네비게이션, 데이터 표시 등 모든 UI 요소를 표준화했습니다. MUI의 그리드 시스템을 참고하여 반응형 레이아웃 시스템을 개발했으며, Storybook을 활용하여 컴포넌트 문서화 및 개발 환경을 구축했습니다. 사내망 Nexus Repository에 NPM 패키지로 배포하여 팀 내에서 쉽게 사용할 수 있도록 했습니다.',
+      features: [
+        '30개 Vue3 기반 디자인 컴포넌트',
+        '그리드 시스템',
+        '반응형 레이아웃 시스템',
+        '컴포넌트 문서화',
+        'TypeScript 타입 지원',
+        'Nexus Repository NPM 배포',
+        '일관된 디자인 토큰 시스템',
+        '다크/라이트 테마 지원'
+      ],
+      challenges: [
+        '대규모 컴포넌트 라이브러리 아키텍처 설계',
+        'MUI 그리드 시스템의 Vue3 적응',
+        '사내 Nexus Repository 구축 및 배포',
+        '컴포넌트 간 일관성 유지',
+        'TypeScript 타입 정의 최적화',
+        'WUI 기반 문서화',
+        '버전 관리 및 호환성 유지'
+      ]
+    },
+    {
+      title: '홀리심볼 타이머',
+      description: '메이플스토리 홀리심볼 스킬 쿨다운을 관리하는 일렉트론 기반 타이머 앱입니다. 웹뷰로 구성된 UI와 백그라운드 단축키 감지 기능을 통해 게임 중에도 편리하게 타이머를 리셋할 수 있습니다.',
+      image: ['/worktro_logo.png'],
+      thumbnail: '/worktro_logo.png',
+      technologies: ['Next.js', 'Electron', 'React', 'TypeScript', 'WebView', 'Global Hotkey'],
+      github: 'https://github.com/santarosalia/holy-symbol-timer',
+      live: 'https://holy-symbol-timer.vercel.app/',
       featured: false,
+      detailedDescription: '메이플스토리 게임을 즐기면서 홀리심볼 스킬의 쿨다운을 효율적으로 관리하기 위해 개발한 개인 프로젝트입니다. 일렉트론 프레임워크를 기반으로 하여 웹뷰를 통해 Vue3로 구성된 직관적인 타이머 인터페이스를 제공합니다. 백그라운드에서 전역 단축키를 감지하여 게임 중에도 타이머를 쉽게 리셋할 수 있으며, 쿨다운 완료 시 알림 기능을 통해 스킬 사용 타이밍을 놓치지 않도록 도와줍니다.',
+      features: [
+        '홀리심볼 스킬 쿨다운 타이머',
+        '전역 단축키를 통한 타이머 리셋',
+        '쿨다운 완료 시 알림 기능',
+        '웹뷰 기반 직관적인 UI',
+        '백그라운드 실행 지원',
+        '게임 중 오버레이 형태로 표시',
+        '타이머 커스터마이징 옵션'
+      ],
+      challenges: [
+        '일렉트론과 Vue3 통합',
+        '전역 단축키 감지 및 처리',
+        '백그라운드 프로세스 관리',
+        '게임과의 호환성 확보',
+        '시스템 알림 권한 처리',
+        '크로스 플랫폼 지원'
+      ]
     },
   ];
