@@ -46,7 +46,7 @@ const Header = () => {
                     opacity: [0.85, 1, 0.85],
                     background: [
                       'rgba(255,0,0,1)',
-                      'rgba(255,255,255,1)',
+                      'rgba(255,0,0,1)',
                       'rgba(255,0,0,1)'
                     ]
                   }}
@@ -68,7 +68,8 @@ const Header = () => {
                     opacity: [0.85, 1, 0.85],
                     background: [
                       'rgba(0,255,0,1)',
-                      'rgba(255,255,255,1)',
+                      'rgba(0,255,0,1)',
+
                       'rgba(0,255,0,1)'
                     ]
                   }}
@@ -90,7 +91,8 @@ const Header = () => {
                     opacity: [0.85, 1, 0.85],
                     background: [
                       'rgba(0,0,255,1)',
-                      'rgba(255,255,255,1)',
+                      'rgba(0,0,255,1)',
+
                       'rgba(0,0,255,1)'
                     ]
                   }}
