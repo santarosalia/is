@@ -181,7 +181,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.8}
-              onDragEnd={(e, info) => {
+              onDragEnd={(_e, info) => {
                 if (info.offset.x < -100) {
                   setDirection(1);
                   setCurrentImage((prev) => (prev + 1) % imageCount);
