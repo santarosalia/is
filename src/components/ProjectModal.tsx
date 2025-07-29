@@ -112,7 +112,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                 <div className="p-6 md:p-8">
                   {/* Project Links */}
                   <div className="flex gap-4 mb-6">
-                    <a
+                    {project.github && <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -120,8 +120,8 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                     >
                       <Github size={18} />
                       <span>GitHub</span>
-                    </a>
-                    <a
+                    </a>}
+                      {project.live &&  <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -129,14 +129,14 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                     >
                       <ExternalLink size={18} />
                       <span>Live Demo</span>
-                    </a>
+                    </a>}
                   </div>
 
                   {/* Project Info */}
                   <div className="grid md:grid-cols-3 gap-4 mb-6">
                     <div className="flex items-center gap-2 text-dark-600 dark:text-dark-300">
                       <Calendar size={16} />
-                      <span className="text-sm">2024년</span>
+                      <span className="text-sm">{project.duration}</span>
                     </div>
                     <div className="flex items-center gap-2 text-dark-600 dark:text-dark-300">
                       <Code size={16} />
@@ -144,7 +144,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                     </div>
                     <div className="flex items-center gap-2 text-dark-600 dark:text-dark-300">
                       <Users size={16} />
-                      <span className="text-sm">개인 프로젝트</span>
+                      <span className="text-sm">{project.teamSize}명</span>
                     </div>
                   </div>
 
