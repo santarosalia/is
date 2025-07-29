@@ -139,6 +139,88 @@ const Hero = () => {
           </motion.div>
         )}
 
+        {/* 중앙 원 - 그려지는 효과 */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+        >
+          <svg width="800" height="800" viewBox="0 0 800 800">
+            <motion.circle
+              cx="400"
+              cy="400"
+              r="380"
+              fill="none"
+              stroke="white"
+              strokeWidth="2"
+              strokeDasharray="2388"
+              strokeDashoffset="2388"
+              initial={{ strokeDashoffset: 2388 }}
+              animate={{ 
+                strokeDashoffset: [2388, 0, 0],
+                opacity: [1, 1, 0]
+              }}
+              transition={{ 
+                duration: 4, 
+                delay: 0.8, 
+                ease: "easeInOut",
+                times: [0, 0.5, 1] // 50% 지점에서 사라지기 시작
+              }}
+            />
+          </svg>
+        </motion.div>
+
+        {/* 원 부서지는 효과 - 원이 그려진 후 실행 */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ 
+            duration: 2, 
+            delay: 3.8, // 원 그리기 완료 후 시작 (3초 + 0.8초)
+            ease: "easeOut" 
+          }}
+        >
+          {/* 원 조각들 */}
+          {Array.from({ length: 60 }, (_, i) => {
+            const angle = (i * 6) * (Math.PI / 180); // 360도 / 60개 조각
+            const radius = 380;
+            const startX = 400 + Math.cos(angle) * radius;
+            const startY = 400 + Math.sin(angle) * radius;
+            const endX = 400 + Math.cos(angle) * (radius + 100);
+            const endY = 400 + Math.sin(angle) * (radius + 100);
+            
+            return (
+              <motion.div
+                key={`circle-fragment-${i}`}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                style={{
+                  left: `${startX}px`,
+                  top: `${startY}px`,
+                }}
+                initial={{ 
+                  opacity: 1,
+                  x: 0,
+                  y: 0,
+                  scale: 1
+                }}
+                animate={{ 
+                  opacity: [1, 0],
+                  x: [0, (endX - startX)],
+                  y: [0, (endY - startY)],
+                  scale: [1, 0]
+                }}
+                transition={{ 
+                  duration: 1.5,
+                  delay: 3.8 + (i * 0.02), // 더 빠른 순차적 부서짐
+                  ease: "easeOut"
+                }}
+              />
+            );
+          })}
+        </motion.div>
+
         {/* 우주 먼지 효과 */}
         {  (
           <motion.div 
