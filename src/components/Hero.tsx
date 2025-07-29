@@ -139,9 +139,9 @@ const Hero = () => {
           </motion.div>
         )}
 
-        {/* 중앙 원 - 그려지는 효과 */}
+        {/* 중앙 원 - 그려지는 효과 (데스크탑만) */}
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hidden lg:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
@@ -171,9 +171,9 @@ const Hero = () => {
           </svg>
         </motion.div>
 
-        {/* 원 부서지는 효과 - 원이 그려진 후 실행 */}
+        {/* 원 부서지는 효과 - 원이 그려진 후 실행 (데스크탑만) */}
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] hidden lg:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 1, 0] }}
           transition={{ 
