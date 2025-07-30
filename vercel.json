@@ -1,12 +1,13 @@
 {
-  "routes": [
-    {
-      "src": "/universe",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
-} 
+    "buildCommand": "pnpm build",
+    "outputDirectory": "dist",
+    "installCommand": "pnpm install",
+    "framework": "vite",
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
+   
+  }

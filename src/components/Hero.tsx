@@ -398,7 +398,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 bg-white text-slate-900 font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-white/25 relative overflow-hidden"
             >
-              <span className="relative z-10">프로젝트 탐험</span>
+              <span className="relative z-10">우주 탐험</span>
               {/* 버튼 내부 글로우 효과 */}
               <motion.div
                 className="absolute inset-0 bg-white/20"
