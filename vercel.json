@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/universe",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+} 
