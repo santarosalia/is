@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import Universe from '../view/universe';
+import Universe from '../view/Universe';
 
 export const router = createBrowserRouter([
   {
