@@ -348,7 +348,7 @@ const Hero = () => {
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isAnimationComplete ? 1 : 0, y: isAnimationComplete ? 0 : 20 }}
             transition={{ duration: 0.8, delay: isAnimationComplete ? 0.6 : 0, ease: "easeOut" }}
@@ -383,7 +383,7 @@ const Hero = () => {
                 />
               ))}
             </span>
-          </motion.p>
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
