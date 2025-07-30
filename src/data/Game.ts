@@ -27,11 +27,18 @@ export class Game {
       // 초기화 완료 후 Map과 Player 생성
       this.map = new Map(this.app);
       this.player = new Player(this.app);
+      
+      // 플레이어의 물리 객체를 맵에 연결
+      if (this.map && this.player) {
+        this.map.setPlayerBody(this.player.getBody());
+      }
+      
       this.isInitialized = true;
 
       this.app.ticker.add(() => {
         if (this.isInitialized && this.player && this.map) {
           this.player.update();
+          this.map.update(); // 맵의 물리 시뮬레이션 업데이트
 
           // 별 타일 위에 있을 때 대사창 띄우기
           if (this.map.isOnStar(this.player.sprite.x, this.player.sprite.y)) {
