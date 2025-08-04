@@ -34,7 +34,7 @@ const Header = () => {
           >
             <span className="relative">
               {/* 빛의 삼원색 애니메이션 */}
-              <span className="absolute inset-0 flex items-center justify-center pointer-events-none select-none" style={{ zIndex: 2 }}>
+              {false &&<span className="absolute inset-0 flex items-center justify-center pointer-events-none select-none" style={{ zIndex: 2 }}>
                 {/* 빨강 원 */}
                 <motion.span
                   className="absolute"
@@ -103,7 +103,7 @@ const Header = () => {
                     ease: 'easeInOut',
                   }}
                 />
-              </span>
+              </span>}
               동현
               {/* 네온 글로우 */}
               <span className="absolute inset-0 blur-sm opacity-60 text-purple-400 select-none pointer-events-none">
