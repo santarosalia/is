@@ -1,11 +1,9 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight } from 'lucide-react';
-import ProjectModal from './ProjectModal';
-import type { Project } from '../types/project';
-import { PROJECTS } from '../data/projects';
-
-
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ExternalLink, Github, ArrowRight } from "lucide-react";
+import ProjectModal from "./ProjectModal";
+import type { Project } from "../types/project";
+import { PROJECTS } from "../data/projects";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -21,8 +19,6 @@ const Projects = () => {
     setSelectedProject(null);
   };
 
-  
-
   return (
     <section id="projects" className="section-padding">
       <div className="container-custom">
@@ -37,14 +33,15 @@ const Projects = () => {
             프로젝트
           </h2>
           <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto">
-            주로 사용하는 기술 스택인 TypeScript, Vue3, React, NestJS, Java Spring을 활용하여 개발한 프로젝트들입니다.
-            각 프로젝트는 사용자 경험과 코드 품질을 모두 고려하여 개발되었습니다.
+            주로 사용하는 기술 스택인 TypeScript, Vue3, React, NestJS, Java
+            Spring을 활용하여 개발한 프로젝트들입니다. 각 프로젝트는 사용자
+            경험과 코드 품질을 모두 고려하여 개발되었습니다.
           </p>
         </motion.div>
 
         {/* Featured Projects */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {PROJECTS.filter(p => p.featured).map((project, index) => (
+          {PROJECTS.filter((p) => p.featured).map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 50 }}
@@ -57,8 +54,15 @@ const Projects = () => {
               {/* Project Image */}
               <div className="relative h-64 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-0 dark:to-primary-400">
                 <div className="absolute inset-0 flex items-center justify-center">
-                {project.thumbnail? <img src={project.thumbnail} alt={project.title} className="" /> : <div className="text-6xl">🚀</div>}
-             
+                  {project.thumbnail ? (
+                    <img
+                      src={project.thumbnail}
+                      alt={project.title}
+                      className=""
+                    />
+                  ) : (
+                    <div className="text-6xl">🚀</div>
+                  )}
                 </div>
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
               </div>
@@ -85,8 +89,19 @@ const Projects = () => {
                 </div>
 
                 {/* Project Links */}
-                <div className="flex gap-4" onClick={(e) => e.stopPropagation()}>
-                  {project.github ? <a href={project.github} target="_blank" rel="noopener noreferrer">GitHub</a> : null}
+                <div
+                  className="flex gap-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {project.github ? (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub
+                    </a>
+                  ) : null}
                   <a
                     href={project.live}
                     target="_blank"
@@ -104,7 +119,7 @@ const Projects = () => {
 
         {/* Other Projects */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.filter(p => !p.featured).map((project, index) => (
+          {PROJECTS.filter((p) => !p.featured).map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
@@ -117,8 +132,15 @@ const Projects = () => {
               {/* Project Image */}
               <div className="relative h-48 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/20 dark:to-primary-800/20">
                 <div className="absolute inset-0 flex items-center justify-center">
-                {project.thumbnail? <img src={project.thumbnail} alt={project.title} className="" /> : <div className="text-6xl">🚀</div>}
-
+                  {project.thumbnail ? (
+                    <img
+                      src={project.thumbnail}
+                      alt={project.title}
+                      className=""
+                    />
+                  ) : (
+                    <div className="text-6xl">🚀</div>
+                  )}
                 </div>
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
               </div>
@@ -150,15 +172,20 @@ const Projects = () => {
                 </div>
 
                 {/* Project Links */}
-                <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
-                  {project.github ? <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
-                  >
-                    <Github size={16} />
-                  </a> : null}
+                <div
+                  className="flex gap-3"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {project.github ? (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                    >
+                      <Github size={16} />
+                    </a>
+                  ) : null}
                   <a
                     href={project.live}
                     target="_blank"
@@ -205,4 +232,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;

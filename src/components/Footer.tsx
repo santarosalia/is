@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { Heart, ArrowUp } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowUp } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -20,14 +20,10 @@ const Footer = () => {
           >
             <h3 className="text-2xl font-bold text-primary-400">김동현</h3>
             <p className="text-gray-400 max-w-md">
-              프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는 개발자입니다.
-              TypeScript를 기반으로 Vue3와 React를 주력으로 사용하며, 사용자 중심의 웹 애플리케이션을 개발합니다.
+              프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는
+              개발자입니다. TypeScript를 기반으로 Vue3와 React를 주력으로
+              사용하며, 사용자 중심의 웹 애플리케이션을 개발합니다.
             </p>
-            <div className="flex items-center gap-2 text-gray-400">
-              <span>Made with</span>
-              <Heart size={16} className="text-red-500 fill-current" />
-              <span>in Korea</span>
-            </div>
           </motion.div>
 
           {/* Quick Links */}
@@ -41,11 +37,10 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-white">빠른 링크</h4>
             <ul className="space-y-2">
               {[
-                { name: '홈', href: '#home' },
-                { name: '소개', href: '#about' },
-                { name: '프로젝트', href: '#projects' },
-                { name: '기술', href: '#skills' },
-                { name: '연락처', href: '#contact' },
+                { name: "홈", href: "#home" },
+                { name: "소개", href: "#about" },
+                { name: "프로젝트", href: "#projects" },
+                { name: "기술", href: "#skills" },
               ].map((link) => (
                 <li key={link.name}>
                   <a
@@ -69,8 +64,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-white">연락처</h4>
             <div className="space-y-2 text-gray-400">
-              <p>donghyun.kim@example.com</p>
-              <p>+82 10-1234-5678</p>
+              <p>mdc@kakao.com</p>
               <p>서울, 대한민국</p>
             </div>
           </motion.div>
@@ -85,7 +79,7 @@ const Footer = () => {
           className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-gray-400 text-sm">
-            © 2024 김동현. All rights reserved.
+            © 2025 dope. All rights reserved.
           </p>
           <motion.button
             onClick={scrollToTop}
@@ -101,4 +95,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;

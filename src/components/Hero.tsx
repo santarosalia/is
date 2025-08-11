@@ -1,20 +1,34 @@
-import { motion } from 'framer-motion';
-import { ChevronDown, Github, Mail } from 'lucide-react';
-import Galaxy from './Galaxy';
+import { motion } from "framer-motion";
+import { ChevronDown, Github, Mail } from "lucide-react";
+import Galaxy from "./Galaxy";
 
 const Hero = () => {
   const scrollToNext = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+    const section = document.getElementById("about");
+    if (section) {
+      const offset = section.offsetTop - 80;
+      window.scrollTo({ top: offset, behavior: "smooth" });
+    }
   };
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
-
-      </div>
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-        <Galaxy 
-          mouseRepulsion={true}
-          mouseInteraction={true}
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 0,
+        }}
+      >
+        <Galaxy
+          mouseRepulsion={false}
+          // mouseInteraction={true}
           density={1.5}
           glowIntensity={0.5}
           saturation={0.8}
@@ -27,41 +41,39 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 , ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="mb-4 relative"
           >
             <span className="text-white font-medium relative">
-            디지털 우주를 탐험하는 개발자 🚀
+              디지털 우주를 탐험하는 개발자 🚀
             </span>
           </motion.div>
 
           {/* Main Title */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity:  1 , y:   0  }}
-            transition={{ duration: 0.8, delay:  0.4, ease: "easeOut" }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 relative"
           >
             <span className="relative">
-          
               <span className="text-white relative">
                 김동현
                 {/* 이름 주변 네온 글로우 효과 */}
                 <motion.div
                   className="absolute inset-0 text-white blur-sm"
-                  animate={{ 
+                  animate={{
                     opacity: [0.3, 0.8, 0.3],
-                    scale: [1, 1.02, 1]
+                    scale: [1, 1.02, 1],
                   }}
-                  transition={{ 
-                    duration: 3, 
+                  transition={{
+                    duration: 3,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 >
                   김동현
                 </motion.div>
-                
               </span>
               입니다
             </span>
@@ -70,14 +82,15 @@ const Hero = () => {
           {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity:   1 , y:   0 }}
-            transition={{ duration: 0.8, delay:   0.6, ease: "easeOut" }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto relative"
           >
             <span className="relative">
               디지털 우주를 탐험하는 풀스택 개발자입니다.
               <br />
-              TypeScript, Vue3, React로 프론트엔드 우주를,<br/>
+              TypeScript, Vue3, React로 프론트엔드 우주를,
+              <br />
               NestJS와 Java Spring으로 백엔드 은하를 건설합니다.
             </span>
           </motion.div>
@@ -85,8 +98,8 @@ const Hero = () => {
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity:   1 , y:   0 }}
-            transition={{ duration: 0.8, delay:   0.8 , ease: "easeOut" }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           >
             <motion.a
@@ -99,14 +112,14 @@ const Hero = () => {
               {/* 버튼 내부 글로우 효과 */}
               <motion.div
                 className="absolute inset-0 bg-white/20"
-                animate={{ 
+                animate={{
                   opacity: [0, 0.5, 0],
-                  scale: [0.8, 1.2, 0.8]
+                  scale: [0.8, 1.2, 0.8],
                 }}
-                transition={{ 
-                  duration: 4, 
+                transition={{
+                  duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             </motion.a>
@@ -120,14 +133,14 @@ const Hero = () => {
               {/* 버튼 테두리 글로우 효과 */}
               <motion.div
                 className="absolute inset-0 border-2 border-white rounded-full"
-                animate={{ 
+                animate={{
                   opacity: [0.3, 0.8, 0.3],
-                  scale: [1, 1.05, 1]
+                  scale: [1, 1.05, 1],
                 }}
-                transition={{ 
-                  duration: 3, 
+                transition={{
+                  duration: 3,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             </motion.a>
@@ -136,8 +149,8 @@ const Hero = () => {
           {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity:   1 , y:   0 }}
-            transition={{ duration: 0.8, delay:  1.0, ease: "easeOut" }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
             className="flex justify-center space-x-6 mb-12"
           >
             <motion.a
@@ -151,9 +164,9 @@ const Hero = () => {
               {/* 소셜 링크 글로우 효과 */}
               <motion.div
                 className="absolute inset-0 bg-white/20 rounded-full"
-                whileHover={{ 
+                whileHover={{
                   opacity: [0, 0.5, 0],
-                  scale: [0.8, 1.2, 0.8]
+                  scale: [0.8, 1.2, 0.8],
                 }}
                 transition={{ duration: 0.6 }}
               />
@@ -167,9 +180,9 @@ const Hero = () => {
               {/* 소셜 링크 글로우 효과 */}
               <motion.div
                 className="absolute inset-0 bg-white/20 rounded-full"
-                whileHover={{ 
+                whileHover={{
                   opacity: [0, 0.5, 0],
-                  scale: [0.8, 1.2, 0.8]
+                  scale: [0.8, 1.2, 0.8],
                 }}
                 transition={{ duration: 0.6 }}
               />
@@ -179,8 +192,8 @@ const Hero = () => {
           {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity:   1  }}
-            transition={{ duration: 0.8, delay:   1.2, ease: "easeOut" }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
             className="absolute left-1/2 transform -translate-x-1/2 z-10"
           >
             <motion.button
@@ -189,20 +202,20 @@ const Hero = () => {
               className="flex flex-col items-center text-white hover:text-gray-200 transition-colors duration-200 relative"
             >
               <span className="text-sm mb-2 relative">
-                우주 탐험 계속하기
+                계속하기
                 {/* 스크롤 텍스트 글로우 효과 */}
                 <motion.div
                   className="absolute inset-0 text-white blur-sm"
-                  animate={{ 
+                  animate={{
                     opacity: [0.3, 0.8, 0.3],
                   }}
-                  transition={{ 
-                    duration: 2, 
+                  transition={{
+                    duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 >
-                  우주 탐험 계속하기
+                  계속하기
                 </motion.div>
               </span>
               <motion.div
@@ -214,13 +227,13 @@ const Hero = () => {
                 {/* 화살표 글로우 효과 */}
                 <motion.div
                   className="absolute inset-0 text-white blur-sm"
-                  animate={{ 
+                  animate={{
                     opacity: [0.3, 0.8, 0.3],
                   }}
-                  transition={{ 
-                    duration: 2, 
+                  transition={{
+                    duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 >
                   <ChevronDown size={20} />
@@ -229,12 +242,9 @@ const Hero = () => {
             </motion.button>
           </motion.div>
         </div>
-   
       </div>
-     
-
     </section>
   );
 };
 
-export default Hero; 
+export default Hero;
