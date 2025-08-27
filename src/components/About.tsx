@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { User, Code, Coffee, Heart } from "lucide-react";
+import { User, Code, Coffee } from "lucide-react";
 
 const About = () => {
   const stats = [
@@ -41,9 +41,6 @@ const About = () => {
                     className="md:w-[120px] md:h-[120px] text-gray-400 dark:text-gray-500"
                   />
                 </div>
-              </div>
-              <div className="absolute -bottom-4 -right-4 w-20 h-20 md:w-24 md:h-24 bg-primary-500 rounded-full flex items-center justify-center">
-                <Code size={24} className="md:w-8 md:h-8 text-white" />
               </div>
             </div>
 
