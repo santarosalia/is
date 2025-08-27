@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import { ChevronDown, Github, Mail } from "lucide-react";
+import { useTyping } from "../hooks/useTyping";
 
 const Hero = () => {
+  const typingText = useTyping("KIM DONGHYUN", 80, 600);
+
   const scrollToNext = () => {
     const section = document.getElementById("about");
     if (section) {
@@ -36,21 +39,15 @@ const Hero = () => {
       </div> */}
       <div className="container-custom z-10">
         <div className="text-center">
-          {/* Greeting */}
-
-          {/* Main Title */}
-
-          {/* Subtitle */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto relative"
-          >
-            <span className="relative">
-              안녕하세요 풀스택 개발자 김동현입니다.
-            </span>
-          </motion.div>
+          {/* Maintitle */}
+          <span className="w-full text-9xl font-bold">
+            {typingText}
+            <motion.span
+              className="inline-block w-1 h-24 bg-blue-400 ml-1"
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            />
+          </span>
 
           {/* CTA Buttons */}
           <motion.div
@@ -86,7 +83,7 @@ const Hero = () => {
               />
             </motion.a>
             <motion.a
-              href="mailto:donghyun.kim@example.com"
+              href="mailto:mdc@kakao.com"
               whileHover={{ scale: 1.1, y: -2 }}
               className="p-3 rounded-full bg-slate-800/50 backdrop-blur-sm text-gray-300 hover:text-white transition-colors duration-200 border border-slate-700 relative overflow-hidden"
             >
@@ -115,23 +112,6 @@ const Hero = () => {
               whileHover={{ y: 5 }}
               className="flex flex-col items-center text-white hover:text-gray-200 transition-colors duration-200 relative"
             >
-              <span className="text-sm mb-2 relative">
-                계속하기
-                {/* 스크롤 텍스트 글로우 효과 */}
-                <motion.div
-                  className="absolute inset-0 text-white blur-sm"
-                  animate={{
-                    opacity: [0.3, 0.8, 0.3],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  계속하기
-                </motion.div>
-              </span>
               <motion.div
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}

@@ -3,9 +3,8 @@ import { User, Code, Coffee, Heart } from "lucide-react";
 
 const About = () => {
   const stats = [
-    { icon: Code, label: "프로젝트 완료", value: "35+" },
+    { icon: Code, label: "코드 라인", value: "50K+" },
     { icon: Coffee, label: "커피 컵", value: "1000+" },
-    { icon: Heart, label: "만족한 클라이언트", value: "18+" },
     { icon: User, label: "경력 연차", value: "3+" },
   ];
 
