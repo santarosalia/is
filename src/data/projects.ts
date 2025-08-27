@@ -38,9 +38,9 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    title: "HR-Expert 솔루션 개발",
+    title: "AI-Agent 솔루션 개발",
     description:
-      "Vue3 + NestJS 기반의 AI 인사 솔루션입니다. 문서 추출, 표절검사, 주요부분 하이라이트, 인터뷰 질문생성 기능을 제공하여 채용 프로세스를 효율적으로 지원합니다.",
+      "Vue3 + NestJS 기반의 AI 인사 검증 솔루션입니다. 문서 추출, 표절검사, 주요부분 하이라이트, 인터뷰 질문생성 기능을 제공하여 채용 프로세스를 효율적으로 지원합니다.",
     image: ["/worktro.gif"],
     thumbnail: "",
     technologies: [

@@ -22,11 +22,6 @@ const About = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-dark-900 dark:text-white mb-4">
             @me
           </h2>
-          <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto">
-            프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는
-            개발자입니다. 사용자 경험을 중시하며, 깔끔하고 효율적인 코드 작성을
-            지향합니다.
-          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -89,7 +84,7 @@ const About = () => {
           >
             <div>
               <h3 className="text-2xl font-bold text-dark-900 dark:text-white mb-4">
-                안녕하세요! 저는 김동현입니다 👨‍💻
+                안녕하세요! 저는 김동현입니다.
               </h3>
               <p className="text-lg text-dark-600 dark:text-dark-300 mb-4">
                 3년간의 개발 경험을 통해 프론트엔드 개발에 특화되어 있으면서도,
@@ -131,16 +126,6 @@ const About = () => {
                 ))}
               </div>
             </div>
-
-            {/* CTA Button */}
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block btn-primary"
-            >
-              함께 일해보세요
-            </motion.a>
           </motion.div>
         </div>
       </div>

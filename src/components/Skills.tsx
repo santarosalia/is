@@ -1,56 +1,57 @@
-import { motion } from 'framer-motion';
-import { Code, Database, Palette, Zap } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Code, Database, Palette, Zap } from "lucide-react";
 
 const Skills = () => {
   const skillCategories = [
     {
-      title: 'Frontend',
+      title: "Frontend",
       icon: Code,
       skills: [
-        { name: 'TypeScript', level: 90 },
-        { name: 'Vue3', level: 85 },
-        { name: 'React', level: 80 },
-        { name: 'HTML/CSS', level: 95 },
-        { name: 'JavaScript', level: 90 },
+        { name: "TypeScript", level: 90 },
+        { name: "Vue", level: 85 },
+        { name: "React", level: 80 },
+        { name: "React Native", level: 50 },
       ],
     },
     {
-      title: 'Styling & UI',
+      title: "Styling & UI",
       icon: Palette,
       skills: [
-        { name: 'Tailwind CSS', level: 85 },
-        { name: 'Vue Router', level: 80 },
-        { name: 'Pinia', level: 75 },
-        { name: 'Framer Motion', level: 70 },
-        { name: 'CSS Grid/Flexbox', level: 90 },
+        { name: "Tailwind CSS", level: 85 },
+        { name: "CSS", level: 85 },
+        { name: "Framer Motion", level: 70 },
+        { name: "Emotion", level: 90 },
       ],
     },
     {
-      title: 'Backend & Database',
+      title: "Backend & Database",
       icon: Database,
       skills: [
-        { name: 'NestJS', level: 75 },
-        { name: 'Java Spring', level: 70 },
-        { name: 'Node.js', level: 80 },
-        { name: 'PostgreSQL', level: 65 },
-        { name: 'REST APIs', level: 85 },
+        { name: "NestJS", level: 75 },
+        { name: "Spring", level: 70 },
+        { name: "Node.js", level: 80 },
+        { name: "PostgreSQL", level: 65 },
+        { name: "REST APIs", level: 85 },
       ],
     },
     {
-      title: 'Tools & Others',
+      title: "Tools & Others",
       icon: Zap,
       skills: [
-        { name: 'Git', level: 85 },
-        { name: 'Docker', level: 70 },
-        { name: 'Vite', level: 80 },
-        { name: 'Webpack', level: 75 },
-        { name: 'Jest', level: 75 },
+        { name: "Git", level: 85 },
+        { name: "Docker", level: 80 },
+        { name: "Vite", level: 80 },
+        { name: "Jenkins", level: 75 },
+        { name: "Figma", level: 75 },
       ],
     },
   ];
 
   return (
-    <section id="skills" className="section-padding bg-gray-50 dark:bg-dark-800">
+    <section
+      id="skills"
+      className="section-padding bg-gray-50 dark:bg-dark-800"
+    >
       <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,8 +64,9 @@ const Skills = () => {
             기술 스택
           </h2>
           <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto">
-            프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는 기술 스택을 보유하고 있습니다.
-            지속적으로 새로운 기술을 학습하며 더 나은 개발자로 성장하고 있습니다.
+            프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는 기술
+            스택을 보유하고 있습니다. 지속적으로 새로운 기술을 학습하며 더 나은
+            개발자로 성장하고 있습니다.
           </p>
         </motion.div>
 
@@ -80,7 +82,10 @@ const Skills = () => {
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
-                  <category.icon size={24} className="text-primary-600 dark:text-primary-400" />
+                  <category.icon
+                    size={24}
+                    className="text-primary-600 dark:text-primary-400"
+                  />
                 </div>
                 <h3 className="text-xl font-bold text-dark-900 dark:text-white">
                   {category.title}
@@ -133,9 +138,20 @@ const Skills = () => {
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              'Vuex', 'Composition API', 'Options API', 'Redux', 'GraphQL', 'MongoDB',
-              'Sass', 'Bootstrap', 'Ant Design', 'Storybook', 'Cypress', 'ESLint',
-              'Prettier', 'Husky', 'CI/CD', 'Agile', 'Scrum', 'Jira', 'MySQL', 'Redis'
+              "Pinia",
+              "Composition API",
+              "Redux",
+              "Zustand",
+              "MUI",
+              "Vuetify",
+              "Puppeteer",
+              "ESLint",
+              "Prettier",
+              "Husky",
+              "Chrome API",
+              "Redis",
+              "Github Actions",
+              "NPM Registry",
             ].map((skill, index) => (
               <motion.div
                 key={skill}
@@ -157,4 +173,4 @@ const Skills = () => {
   );
 };
 
-export default Skills; 
+export default Skills;
