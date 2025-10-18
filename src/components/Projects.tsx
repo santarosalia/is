@@ -53,7 +53,7 @@ const Projects = () => {
             >
               {/* Project Image */}
               <div className="relative h-64 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-0 dark:to-primary-400">
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                   {project.thumbnail ? (
                     <img
                       src={project.thumbnail}
@@ -144,7 +144,6 @@ const Projects = () => {
                 </div>
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
               </div>
-
               {/* Project Content */}
               <div className="p-4">
                 <h3 className="text-lg font-bold text-dark-900 dark:text-white mb-2">
