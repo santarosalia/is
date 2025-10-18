@@ -253,8 +253,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                       ) : (
                         <div className="flex items-center justify-center h-full text-dark-400 dark:text-dark-500">
                           <div className="text-center">
-                            <div className="text-4xl mb-2">🎬</div>
-                            <p className="text-sm">데모 GIF가 준비 중입니다</p>
+                            <p className="text-sm">이미지를 준비 중입니다...</p>
                           </div>
                         </div>
                       )}
