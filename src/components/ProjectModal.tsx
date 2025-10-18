@@ -1,8 +1,7 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Github, Calendar, Code, Users } from 'lucide-react';
-import type { Project } from '../types/project';
-import { useState } from 'react';
-
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ExternalLink, Github, Calendar, Code, Users } from "lucide-react";
+import type { Project } from "../types/project";
+import { useState } from "react";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -33,17 +32,17 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
     enter: (dir: number) => ({
       x: dir > 0 ? 300 : -300,
       opacity: 0,
-      position: 'absolute' as const,
+      position: "absolute" as const,
     }),
     center: {
       x: 0,
       opacity: 1,
-      position: 'relative' as const,
+      position: "relative" as const,
     },
     exit: (dir: number) => ({
       x: dir < 0 ? 300 : -300,
       opacity: 0,
-      position: 'absolute' as const,
+      position: "absolute" as const,
     }),
   };
 
@@ -59,7 +58,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
             onClick={onClose}
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
           />
-          
+
           {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -72,11 +71,19 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
               <div className="relative w-full max-w-4xl bg-white dark:bg-dark-800 rounded-2xl shadow-2xl overflow-hidden">
                 {/* Header */}
                 <div className="relative h-64 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/20 dark:to-primary-800/20">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {project.thumbnail? <img src={project.thumbnail} alt={project.title} className="" /> : <div className="text-8xl">🚀</div>}
+                  <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                    {project.thumbnail ? (
+                      <img
+                        src={project.thumbnail}
+                        alt={project.title}
+                        className=""
+                      />
+                    ) : (
+                      <div className="text-8xl">🚀</div>
+                    )}
                   </div>
                   <div className="absolute inset-0 bg-black/20"></div>
-                  
+
                   {/* Close Button */}
                   <button
                     onClick={onClose}
@@ -84,7 +91,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                   >
                     <X size={20} />
                   </button>
-                  
+
                   {/* Project Title */}
                   <div className="absolute bottom-4 left-4 right-4">
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
@@ -112,24 +119,28 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                 <div className="p-6 md:p-8">
                   {/* Project Links */}
                   <div className="flex gap-4 mb-6">
-                    {project.github && <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-dark-700 text-dark-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors duration-200"
-                    >
-                      <Github size={18} />
-                      <span>GitHub</span>
-                    </a>}
-                      {project.live &&  <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white hover:bg-primary-700 rounded-lg transition-colors duration-200"
-                    >
-                      <ExternalLink size={18} />
-                      <span>Live Demo</span>
-                    </a>}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-dark-700 text-dark-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 rounded-lg transition-colors duration-200"
+                      >
+                        <Github size={18} />
+                        <span>GitHub</span>
+                      </a>
+                    )}
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white hover:bg-primary-700 rounded-lg transition-colors duration-200"
+                      >
+                        <ExternalLink size={18} />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
                   </div>
 
                   {/* Project Info */}
@@ -140,7 +151,9 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                     </div>
                     <div className="flex items-center gap-2 text-dark-600 dark:text-dark-300">
                       <Code size={16} />
-                      <span className="text-sm">{project.technologies.length}개 기술</span>
+                      <span className="text-sm">
+                        {project.technologies.length}개 기술
+                      </span>
                     </div>
                     <div className="flex items-center gap-2 text-dark-600 dark:text-dark-300">
                       <Users size={16} />
@@ -157,94 +170,115 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                       {project.detailedDescription || project.description}
                     </p>
                   </div>
-{/* Project Demo GIF */}
-<div className="mb-6">
-  <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">
-    프로젝트 데모
-  </h3>
-  <div className="relative w-full h-64 md:h-80 bg-gray-100 dark:bg-dark-700 rounded-lg overflow-hidden flex items-center justify-center">
-    {project.image && project.image.length > 0 ? (
-      <>
-        <div className="w-full h-full relative flex items-center justify-center">
-          <AnimatePresence initial={false} custom={direction}>
-            <motion.img
-              key={currentImage}
-              src={project.image[currentImage]}
-              alt={`${project.title} 데모 ${currentImage + 1}`}
-              className="w-full h-full object-contain absolute left-0 top-0 cursor-grab"
-              custom={direction}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ type: 'spring', stiffness: 300, damping: 30, duration: 0.4 }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.8}
-              onDragEnd={(_e, info) => {
-                if (info.offset.x < -100) {
-                  setDirection(1);
-                  setCurrentImage((prev) => (prev + 1) % imageCount);
-                } else if (info.offset.x > 100) {
-                  setDirection(-1);
-                  setCurrentImage((prev) => (prev - 1 + imageCount) % imageCount);
-                }
-              }}
-            />
-          </AnimatePresence>
-        </div>
-        {project.image.length > 1 && (
-          <>
-            {/* 이전 버튼 */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 dark:bg-dark-800/70 p-2 rounded-full shadow hover:bg-white/90 dark:hover:bg-dark-800 z-10"
-            >
-              {'<'}
-            </button>
-            {/* 다음 버튼 */}
-            <button
-              onClick={handleNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 dark:bg-dark-800/70 p-2 rounded-full shadow hover:bg-white/90 dark:hover:bg-dark-800 z-10"
-            >
-              {'>'}
-            </button>
-            {/* 인디케이터 */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-              {project.image.map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`w-2 h-2 rounded-full ${idx === currentImage ? 'bg-primary-600' : 'bg-gray-300 dark:bg-dark-500'}`}
-                />
-              ))}
-            </div>
-          </>
-        )}
-      </>
-    ) : (
-      <div className="flex items-center justify-center h-full text-dark-400 dark:text-dark-500">
-        <div className="text-center">
-          <div className="text-4xl mb-2">🎬</div>
-          <p className="text-sm">데모 GIF가 준비 중입니다</p>
-        </div>
-      </div>
-    )}
-  </div>
-</div>
+                  {/* Project Demo GIF */}
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">
+                      프로젝트 데모
+                    </h3>
+                    <div className="relative w-full h-64 md:h-80 bg-gray-100 dark:bg-dark-700 rounded-lg overflow-hidden flex items-center justify-center">
+                      {project.image && project.image.length > 0 ? (
+                        <>
+                          <div className="w-full h-full relative flex items-center justify-center">
+                            <AnimatePresence initial={false} custom={direction}>
+                              <motion.img
+                                key={currentImage}
+                                src={project.image[currentImage]}
+                                alt={`${project.title} 데모 ${
+                                  currentImage + 1
+                                }`}
+                                className="w-full h-full object-contain absolute left-0 top-0 cursor-grab"
+                                custom={direction}
+                                variants={variants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 300,
+                                  damping: 30,
+                                  duration: 0.4,
+                                }}
+                                drag="x"
+                                dragConstraints={{ left: 0, right: 0 }}
+                                dragElastic={0.8}
+                                onDragEnd={(_e, info) => {
+                                  if (info.offset.x < -100) {
+                                    setDirection(1);
+                                    setCurrentImage(
+                                      (prev) => (prev + 1) % imageCount
+                                    );
+                                  } else if (info.offset.x > 100) {
+                                    setDirection(-1);
+                                    setCurrentImage(
+                                      (prev) =>
+                                        (prev - 1 + imageCount) % imageCount
+                                    );
+                                  }
+                                }}
+                              />
+                            </AnimatePresence>
+                          </div>
+                          {project.image.length > 1 && (
+                            <>
+                              {/* 이전 버튼 */}
+                              <button
+                                onClick={handlePrev}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 dark:bg-dark-800/70 p-2 rounded-full shadow hover:bg-white/90 dark:hover:bg-dark-800 z-10"
+                              >
+                                {"<"}
+                              </button>
+                              {/* 다음 버튼 */}
+                              <button
+                                onClick={handleNext}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 dark:bg-dark-800/70 p-2 rounded-full shadow hover:bg-white/90 dark:hover:bg-dark-800 z-10"
+                              >
+                                {">"}
+                              </button>
+                              {/* 인디케이터 */}
+                              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                                {project.image.map((_, idx) => (
+                                  <div
+                                    key={idx}
+                                    className={`w-2 h-2 rounded-full ${
+                                      idx === currentImage
+                                        ? "bg-primary-600"
+                                        : "bg-gray-300 dark:bg-dark-500"
+                                    }`}
+                                  />
+                                ))}
+                              </div>
+                            </>
+                          )}
+                        </>
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-dark-400 dark:text-dark-500">
+                          <div className="text-center">
+                            <div className="text-4xl mb-2">🎬</div>
+                            <p className="text-sm">데모 GIF가 준비 중입니다</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   {/* Features */}
                   <div className="mb-6">
                     <h3 className="text-lg font-semibold text-dark-900 dark:text-white mb-3">
                       주요 기능
                     </h3>
                     <ul className="space-y-2">
-                      {(project.features || [
-                        '반응형 웹 디자인',
-                        '사용자 인증 및 권한 관리',
-                        '데이터베이스 연동',
-                        'API 통신',
-                        '상태 관리'
-                      ]).map((feature, index) => (
-                        <li key={index} className="flex items-start gap-2 text-dark-600 dark:text-dark-300">
+                      {(
+                        project.features || [
+                          "반응형 웹 디자인",
+                          "사용자 인증 및 권한 관리",
+                          "데이터베이스 연동",
+                          "API 통신",
+                          "상태 관리",
+                        ]
+                      ).map((feature, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-2 text-dark-600 dark:text-dark-300"
+                        >
                           <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
                           <span>{feature}</span>
                         </li>
@@ -258,13 +292,18 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                       기술적 도전과 해결
                     </h3>
                     <ul className="space-y-2">
-                      {(project.challenges || [
-                        '복잡한 상태 관리 구조 설계',
-                        '성능 최적화 및 코드 분할',
-                        '크로스 브라우저 호환성 확보',
-                        '보안 취약점 방지'
-                      ]).map((challenge, index) => (
-                        <li key={index} className="flex items-start gap-2 text-dark-600 dark:text-dark-300">
+                      {(
+                        project.challenges || [
+                          "복잡한 상태 관리 구조 설계",
+                          "성능 최적화 및 코드 분할",
+                          "크로스 브라우저 호환성 확보",
+                          "보안 취약점 방지",
+                        ]
+                      ).map((challenge, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-2 text-dark-600 dark:text-dark-300"
+                        >
                           <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
                           <span>{challenge}</span>
                         </li>
@@ -298,4 +337,4 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
   );
 };
 
-export default ProjectModal; 
+export default ProjectModal;
