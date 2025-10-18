@@ -6,6 +6,7 @@ export const PROJECTS: Project[] = [
     description:
       "메이플랜드 게임 유저들을 위한 실시간 파티 사냥 매칭 커뮤니티 서비스입니다. WebSocket과 Redis Pub/Sub을 활용한 마이크로서비스 아키텍처로 실시간 알림과 파티 매칭 기능을 제공합니다.",
     thumbnail: "/maparty.png",
+    teamSize: "1",
     image: ["/maparty.png", "/maparty_demo1.png"],
     technologies: [
       "Next.js 15",
