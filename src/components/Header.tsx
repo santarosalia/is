@@ -73,14 +73,14 @@ const Header = () => {
           <div className="container-custom">
             <div className="flex items-center justify-between h-16">
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center space-x-8">
+              <nav className="hidden md:flex items-center space-x-8 p-10">
                 {navItems.map((item) => (
                   <motion.a
                     key={item.name}
                     href={""}
                     onClick={(e) => onClickMenu(e, item.sectionId)}
                     whileHover={{ y: -2, scale: 1.08 }}
-                    className="text-gray-200 drop-shadow-[0_0_6px_rgba(180,180,255,0.7)] hover:text-white hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative"
+                    className="text-gray-800  hover:text-gray-900 hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative"
                   >
                     <span className="relative">
                       {item.name}

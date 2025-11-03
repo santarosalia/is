@@ -17,7 +17,7 @@ const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-400 to-white"></div>
       {/* <div
         style={{
           position: "absolute",
