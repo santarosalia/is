@@ -94,10 +94,10 @@ const Header = () => {
               </nav>
 
               {/* Theme Toggle & Mobile Menu Button */}
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 p-4">
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="md:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] border border-white/30 backdrop-blur-sm relative overflow-hidden"
+                  className="md:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 text-black drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] border border-black/30 backdrop-blur-sm relative overflow-hidden"
                   style={{
                     filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.15))",
                     background:
@@ -129,7 +129,7 @@ const Header = () => {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="md:hidden py-4 border-t border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl"
+                className="md:hidden py-4 border-t border-black/20 bg-white/10 backdrop-blur-xl shadow-2xl"
                 style={{
                   filter: "drop-shadow(0 0 15px rgba(255, 255, 255, 0.08))",
                   background:
@@ -143,7 +143,7 @@ const Header = () => {
                     <a
                       key={item.name}
                       onClick={(e) => onClickMenu(e, item.sectionId)}
-                      className="text-gray-200 drop-shadow-[0_0_6px_rgba(180,180,255,0.7)] hover:text-white hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative ml-4"
+                      className="text-gray-900  hover:text-black hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative ml-4 cursor-pointer"
                     >
                       <span className="relative">
                         {item.name}

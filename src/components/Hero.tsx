@@ -40,10 +40,10 @@ const Hero = () => {
       <div className="container-custom z-10">
         <div className="text-center">
           {/* Maintitle */}
-          <span className="w-full text-9xl font-bold">
+          <span className="w-full text-2xl font-bold md:text-4xl lg:text-6xl">
             {typingText}
             <motion.span
-              className="inline-block w-1 h-24 bg-blue-400 ml-1"
+              className="inline-block w-1 h-6 md:h-10 lg:h-16 bg-blue-400 ml-1"
               animate={{ opacity: [1, 0, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             />
