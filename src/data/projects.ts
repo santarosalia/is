@@ -227,7 +227,7 @@ export const PROJECTS: Project[] = [
     duration: "2024.06 ~ 2024.09",
     teamSize: "2",
     live: "",
-    featured: true,
+    featured: false,
     detailedDescription:
       "Worktro 프로젝트의 일관된 디자인 시스템을 위해 Vue3 기반의 컴포넌트 라이브러리를 개발했습니다. 총 30개의 다양한 컴포넌트를 구현하여 버튼, 폼, 네비게이션, 데이터 표시 등 모든 UI 요소를 표준화했습니다. MUI의 그리드 시스템을 참고하여 반응형 레이아웃 시스템을 개발했으며, Storybook을 활용하여 컴포넌트 문서화 및 개발 환경을 구축했습니다. 사내망 Nexus Repository에 NPM 패키지로 배포하여 팀 내에서 쉽게 사용할 수 있도록 했습니다.",
     features: [
@@ -254,8 +254,10 @@ export const PROJECTS: Project[] = [
     title: "홀리심볼 타이머",
     description:
       "메이플스토리 홀리심볼 스킬 쿨다운을 관리하는 일렉트론 기반 타이머 앱입니다. 웹뷰로 구성된 UI와 백그라운드 단축키 감지 기능을 통해 게임 중에도 편리하게 타이머를 리셋할 수 있습니다.",
-    image: ["/worktro_logo.png"],
-    thumbnail: "/worktro_logo.png",
+    image: [],
+    duration: "2025.06 ~ 2025.06",
+    teamSize: "1",
+    thumbnail: "",
     technologies: [
       "Next.js",
       "Electron",
@@ -336,6 +338,45 @@ export const PROJECTS: Project[] = [
       "클라이언트-서버 간 신뢰성 확보",
       "게임 로직 검증 및 무결성 보장",
       "안티치트 시스템 구현",
+    ],
+  },
+  {
+    title: "문서 추출 플랫폼 개발",
+    description:
+      "NestJS 백엔드와 Next.js 프론트엔드로 구현된 AI 기반 문서 추출·분석 플랫폼입니다. RabbitMQ로 문서 파싱 작업 상태를 비동기 수신하고, Redis·Prisma로 데이터를 관리하며, 외부 파싱 엔진과 연동해 PDF·이미지·오피스 문서에서 구조화 데이터를 추출합니다.",
+    thumbnail: "/worktro_logo.png",
+    duration: "2025.12 ~ 2026.02",
+    teamSize: "4",
+    technologies: [
+      "NestJS",
+      "Next.js",
+      "TypeScript",
+      "RabbitMQ",
+      "Redis",
+      "Prisma",
+    ],
+    github: "",
+    live: "https://docuops.ngrok.dev/",
+    featured: true,
+    image: ["/docuops1.png", "/docuops2.png", "/docuops3.png"],
+    detailedDescription:
+      "NestJS 백엔드와 Next.js 프론트엔드로 구현된 AI 기반 문서 추출·분석 플랫폼입니다. 백엔드에서 외부 파싱 엔진으로 문서를 전송하고, RabbitMQ로 작업 상태를 비동기 수신해 문서 상태를 갱신합니다. 스키마 기반 구조화 추출(Schema/SchemaValue), RAG 기반 문서 채팅, 프로젝트·워크스페이스·공유·감사 로그·메트릭스를 지원하며, 프론트엔드는 Next.js와 Konva 캔버스로 문서 시각화 및 편집을 제공합니다.",
+    features: [
+      "프로젝트·워크스페이스 단위 문서 관리",
+      "PDF, DOCX, PPTX, 이미지 등 드래그 앤 드롭 업로드 및 문서 추출",
+      "RabbitMQ를 활용한 문서 파싱 작업 상태 비동기 수신 및 반영",
+      "파싱 작업 큐 관리",
+      "스키마 기반 구조화 데이터 추출 및 스키마 값 편집",
+      "RAG 기반 문서 채팅(엔진 연동)",
+      "문서·프로젝트 공유 및 권한 관리",
+      "Next.js 프론트엔드 문서 결과 시각화(Konva 캔버스)·다크모드·반응형 UI",
+      "SSE를 통한 실시간 문서 상태 푸시",
+      "감사 로그 및 사용량 메트릭스",
+    ],
+    challenges: [
+      "외부 파싱 엔진과 NestJS 간 비동기 연동 및 RabbitMQ로 작업 상태 일관성 유지",
+      "다양한 문서 포맷(PDF/이미지/오피스) 처리 및 업로드 처리",
+      "스키마 기반 추출과 RAG 채팅을 위한 문서·메타데이터 설계",
     ],
   },
 ];
