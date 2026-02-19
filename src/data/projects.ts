@@ -379,4 +379,43 @@ export const PROJECTS: Project[] = [
       "스키마 기반 추출과 RAG 채팅을 위한 문서·메타데이터 설계",
     ],
   },
+  {
+    title: "AI 에이전트 & MCP 관리 플랫폼",
+    description:
+      "NestJS 백엔드와 Next.js 프론트엔드로 구현된 AI 에이전트 플랫폼입니다. MCP(Model Context Protocol) 서버를 등록·관리하고, 채팅 시 등록된 MCP 도구를 자동으로 사용하며, Socket.io로 에이전트 이벤트를 실시간 전달하고, OpenAI 또는 로컬 LLM과 연동합니다.",
+    thumbnail: "",
+    duration: "2025.02 ~ 2026.02",
+    teamSize: "1",
+    technologies: [
+      "NestJS",
+      "Next.js",
+      "TypeScript",
+      "OpenAI API",
+      "MCP (Model Context Protocol)",
+      "Socket.io",
+      "React Flow",
+      "Electron",
+    ],
+    github: "https://github.com/santarosalia/magicclaw",
+    live: "",
+    featured: true,
+    image: ["/magicclaw1.png", "/magicclaw2.png", "/magicclaw3.png"],
+    detailedDescription:
+      "NestJS 백엔드와 Next.js 프론트엔드로 구현된 AI 에이전트 플랫폼입니다. 백엔드에서 MCP 서버 CRUD·도구 목록 조회를 제공하고, OpenAI 채팅 완성과 MCP 도구 호출을 결합해 도구 사용 가능 에이전트를 구현합니다. 사용자 요청에 따라 계획 수립(needPlan/steps) 후 단계별로 MCP 서버를 지정해 도구를 호출하며, Socket.io WebSocket으로 계획·tool_call·tool_result·assistant_message·final_message를 실시간 푸시합니다. 프론트엔드는 Next.js 15·React 19로 MCP 서버 관리·LLM 설정(OpenAI/로컬 baseURL)·채팅 UI를 제공하고, React Flow로 도구 호출 플로우를 시각화하며, Electron 기반 데스크톱 앱(magicclaw-desktop)을 지원합니다.",
+    features: [
+      "MCP 서버 등록·관리(stdio, 명령·인자 설정) 및 도구 목록 조회",
+      "LLM 설정 관리(OpenAI API / 로컬 LLM baseURL·apiKey) 및 기본 모델 지정",
+      "에이전트 채팅: 사용자 메시지에 대한 계획 수립(다단계·서버 지정) 후 도구 자동 호출",
+      "Socket.io를 활용한 실시간 에이전트 이벤트 푸시(계획·도구 호출·결과·최종 메시지)",
+      "채팅 화면에서 도구 호출 흐름을 React Flow로 시각화(ToolCallFlow)",
+      "Next.js 프론트엔드: MCP·LLM·채팅 페이지, 전역 연결 상태 표시, 마크다운 렌더링",
+      "Electron 기반 데스크톱 앱 빌드 및 실행 지원",
+      "파일 기반 저장(FileStoreService)으로 MCP 서버·LLM 설정 영속화",
+    ],
+    challenges: [
+      "MCP 서버(stdio)와 NestJS 간 연동 및 도구 스키마를 OpenAI function calling 형식으로 변환",
+      "다단계 계획 수립(needPlan/steps)과 단계별 MCP 서버 지정으로 도구 선택 정확도 유지",
+      "WebSocket으로 스트리밍 이벤트 전달 시 프론트 상태(메시지·도구 호출 캐시)와 동기화",
+    ],
+  },
 ];
