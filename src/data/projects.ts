@@ -2,6 +2,58 @@ import type { Project } from "../types/project";
 
 export const PROJECTS: Project[] = [
   {
+    title: "MagicClaw",
+    description:
+      "MCP(Model Context Protocol) 서버를 등록·관리하고, 채팅 시 해당 도구를 활용하는 자체 호스팅 AI 에이전트 플랫폼입니다. NestJS 백엔드와 Next.js 웹 UI, 크로스 플랫폼 CLI를 통해 로컬 환경에서 에이전트를 구축·운영할 수 있습니다.",
+    image: [],
+    duration: "2026.02 ~ 2026.07",
+    teamSize: "1",
+    thumbnail: "",
+    technologies: [
+      "NestJS",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "LangChain",
+      "LangGraph",
+      "MCP",
+      "Socket.IO",
+      "Electron",
+      "Tailwind CSS",
+      "SQLite",
+      "pnpm",
+    ],
+    github: "https://github.com/santarosalia/magicclaw",
+    live: "",
+    featured: true,
+    detailedDescription:
+      "외부 MCP 서버를 동적으로 연결해 AI 에이전트의 도구 범위를 확장할 수 있는 개인 프로젝트입니다. LangGraph 기반 대화 루프에서 OpenAI 모델이 MCP 도구를 호출하며, WebSocket으로 실시간 스트리밍 응답과 도구 실행 이벤트를 제공합니다. 장기 메모리(mem0·내장 스토어), 스킬 허브·큐레이터, 세션 FTS 검색, 텔레그램 봇 연동 등 에이전트 운영에 필요한 기능을 모듈화해 구현했습니다. Linux/macOS/Windows용 설치 스크립트와 `magicclaw` CLI로 릴리스 번들을 배포·관리할 수 있으며, Electron 데스크톱 앱도 선택적으로 지원합니다.",
+    features: [
+      "MCP 서버 CRUD 및 도구 목록 조회",
+      "LangGraph 기반 도구 호출 AI 에이전트 채팅",
+      "WebSocket 실시간 응답·도구 실행 이벤트 스트리밍",
+      "React Flow 기반 도구 호출 플로우 시각화",
+      "장기 메모리 관리 (내장 스토어 + mem0 provider)",
+      "스킬 허브 설치·큐레이터·에이전트 플레이북",
+      "세션 저장 및 FTS/LIKE 기반 세션 검색",
+      "텔레그램 봇 메신저 연동",
+      "컨텍스트 토큰 예산·압축 처리",
+      "크로스 플랫폼 CLI (`magicclaw start/stop/setup/update`)",
+      "GitHub Releases 기반 OS별 tarball 배포",
+      "Electron 데스크톱 앱 (선택)",
+    ],
+    challenges: [
+      "LangGraph 에이전트 루프와 MCP 도구 통합",
+      "MCP 연결 풀 관리 및 연결 오류 처리",
+      "컨텍스트 길이 초과 시 토큰 예산·압축 전략",
+      "메모리 provider 추상화 및 턴 동기화",
+      "WebSocket 기반 멀티 채널(웹·텔레그램) 오케스트레이션",
+      "Linux/macOS Bash + Windows PowerShell 5.1 크로스 플랫폼 설치기",
+      "Electron 패키징 시 API·Next.js 번들 통합",
+      "모노레포(pnpm workspace) 빌드·릴리스 파이프라인",
+    ],
+  },
+  {
     title: "메랜파티 - 메이플랜드 파티 매칭 플랫폼",
     description:
       "메이플랜드 게임 유저들을 위한 실시간 파티 사냥 매칭 커뮤니티 서비스입니다. WebSocket과 Redis Pub/Sub을 활용한 마이크로서비스 아키텍처로 실시간 알림과 파티 매칭 기능을 제공합니다.",
