@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Github, Calendar, Code, Users } from "lucide-react";
 import type { Project } from "../types/project";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const VIDEO_EXTENSIONS = /\.(mov|mp4|webm|ogg)$/i;
 
@@ -18,10 +18,20 @@ interface ProjectModalProps {
 const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [direction, setDirection] = useState(0); // -1: left, 1: right
+
+  useEffect(() => {
+    setCurrentImage(0);
+    setDirection(0);
+  }, [project?.title]);
+
   if (!project) return null;
 
-  // 이미지 배열 길이
   const imageCount = project.image ? project.image.length : 0;
+  const activeIndex =
+    imageCount > 0
+      ? ((currentImage % imageCount) + imageCount) % imageCount
+      : 0;
+  const activeMedia = imageCount > 0 ? project.image[activeIndex] : "";
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     setDirection(-1);
@@ -38,17 +48,14 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
     enter: (dir: number) => ({
       x: dir > 0 ? 300 : -300,
       opacity: 0,
-      position: "absolute" as const,
     }),
     center: {
       x: 0,
       opacity: 1,
-      position: "relative" as const,
     },
     exit: (dir: number) => ({
       x: dir < 0 ? 300 : -300,
       opacity: 0,
-      position: "absolute" as const,
     }),
   };
 
@@ -82,7 +89,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                       <img
                         src={project.thumbnail}
                         alt={project.title}
-                        className=""
+                        className="w-full h-full object-cover"
                       />
                     ) : (
                       <div className="text-8xl">🚀</div>
@@ -184,13 +191,17 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                     <div className="relative w-full h-64 md:h-80 bg-gray-100 dark:bg-dark-700 rounded-lg overflow-hidden flex items-center justify-center">
                       {project.image && project.image.length > 0 ? (
                         <>
-                          <div className="w-full h-full relative flex items-center justify-center">
-                            <AnimatePresence initial={false} custom={direction}>
-                              {isVideoSrc(project.image[currentImage]) ? (
+                          <div className="w-full h-full relative overflow-hidden">
+                            <AnimatePresence
+                              initial={false}
+                              custom={direction}
+                              mode="wait"
+                            >
+                              {isVideoSrc(activeMedia) ? (
                                 <motion.video
-                                  key={currentImage}
-                                  src={project.image[currentImage]}
-                                  className="w-full h-full object-contain absolute left-0 top-0"
+                                  key={activeMedia}
+                                  src={activeMedia}
+                                  className="absolute inset-0 w-full h-full object-contain"
                                   controls
                                   autoPlay
                                   loop
@@ -205,17 +216,15 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                                     type: "spring",
                                     stiffness: 300,
                                     damping: 30,
-                                    duration: 0.4,
                                   }}
                                 />
                               ) : (
                                 <motion.img
-                                  key={currentImage}
-                                  src={project.image[currentImage]}
-                                  alt={`${project.title} 데모 ${
-                                    currentImage + 1
-                                  }`}
-                                  className="w-full h-full object-contain absolute left-0 top-0 cursor-grab"
+                                  key={activeMedia}
+                                  src={activeMedia}
+                                  alt={`${project.title} 데모 ${activeIndex + 1}`}
+                                  className="absolute inset-0 w-full h-full object-contain cursor-grab"
+                                  loading="eager"
                                   custom={direction}
                                   variants={variants}
                                   initial="enter"
@@ -225,7 +234,6 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                                     type: "spring",
                                     stiffness: 300,
                                     damping: 30,
-                                    duration: 0.4,
                                   }}
                                   drag="x"
                                   dragConstraints={{ left: 0, right: 0 }}
@@ -270,7 +278,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                                   <div
                                     key={idx}
                                     className={`w-2 h-2 rounded-full ${
-                                      idx === currentImage
+                                      idx === activeIndex
                                         ? "bg-primary-600"
                                         : "bg-gray-300 dark:bg-dark-500"
                                     }`}

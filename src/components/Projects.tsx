@@ -58,7 +58,7 @@ const Projects = () => {
                     <img
                       src={project.thumbnail}
                       alt={project.title}
-                      className=""
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <div className="text-6xl">🚀</div>
@@ -136,7 +136,7 @@ const Projects = () => {
                     <img
                       src={project.thumbnail}
                       alt={project.title}
-                      className=""
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <div className="text-6xl">🚀</div>
