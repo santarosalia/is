@@ -5,10 +5,10 @@ export const PROJECTS: Project[] = [
     title: "MagicClaw",
     description:
       "MCP(Model Context Protocol) 서버를 등록·관리하고, 채팅 시 해당 도구를 활용하는 자체 호스팅 AI 에이전트 플랫폼입니다. NestJS 백엔드와 Next.js 웹 UI, 크로스 플랫폼 CLI를 통해 로컬 환경에서 에이전트를 구축·운영할 수 있습니다.",
-    image: [],
+    image: ["/magicclaw.png", "/magicclaw.mov"],
     duration: "2026.02 ~ 2026.07",
     teamSize: "1",
-    thumbnail: "",
+    thumbnail: "/magicclaw.png",
     technologies: [
       "NestJS",
       "Next.js",

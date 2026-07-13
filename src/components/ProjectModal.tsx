@@ -3,6 +3,12 @@ import { X, ExternalLink, Github, Calendar, Code, Users } from "lucide-react";
 import type { Project } from "../types/project";
 import { useState } from "react";
 
+const VIDEO_EXTENSIONS = /\.(mov|mp4|webm|ogg)$/i;
+
+function isVideoSrc(src: string): boolean {
+  return VIDEO_EXTENSIONS.test(src);
+}
+
 interface ProjectModalProps {
   project: Project | null;
   isOpen: boolean;
@@ -180,42 +186,66 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                         <>
                           <div className="w-full h-full relative flex items-center justify-center">
                             <AnimatePresence initial={false} custom={direction}>
-                              <motion.img
-                                key={currentImage}
-                                src={project.image[currentImage]}
-                                alt={`${project.title} 데모 ${
-                                  currentImage + 1
-                                }`}
-                                className="w-full h-full object-contain absolute left-0 top-0 cursor-grab"
-                                custom={direction}
-                                variants={variants}
-                                initial="enter"
-                                animate="center"
-                                exit="exit"
-                                transition={{
-                                  type: "spring",
-                                  stiffness: 300,
-                                  damping: 30,
-                                  duration: 0.4,
-                                }}
-                                drag="x"
-                                dragConstraints={{ left: 0, right: 0 }}
-                                dragElastic={0.8}
-                                onDragEnd={(_e, info) => {
-                                  if (info.offset.x < -100) {
-                                    setDirection(1);
-                                    setCurrentImage(
-                                      (prev) => (prev + 1) % imageCount
-                                    );
-                                  } else if (info.offset.x > 100) {
-                                    setDirection(-1);
-                                    setCurrentImage(
-                                      (prev) =>
-                                        (prev - 1 + imageCount) % imageCount
-                                    );
-                                  }
-                                }}
-                              />
+                              {isVideoSrc(project.image[currentImage]) ? (
+                                <motion.video
+                                  key={currentImage}
+                                  src={project.image[currentImage]}
+                                  className="w-full h-full object-contain absolute left-0 top-0"
+                                  controls
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                  custom={direction}
+                                  variants={variants}
+                                  initial="enter"
+                                  animate="center"
+                                  exit="exit"
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 30,
+                                    duration: 0.4,
+                                  }}
+                                />
+                              ) : (
+                                <motion.img
+                                  key={currentImage}
+                                  src={project.image[currentImage]}
+                                  alt={`${project.title} 데모 ${
+                                    currentImage + 1
+                                  }`}
+                                  className="w-full h-full object-contain absolute left-0 top-0 cursor-grab"
+                                  custom={direction}
+                                  variants={variants}
+                                  initial="enter"
+                                  animate="center"
+                                  exit="exit"
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 30,
+                                    duration: 0.4,
+                                  }}
+                                  drag="x"
+                                  dragConstraints={{ left: 0, right: 0 }}
+                                  dragElastic={0.8}
+                                  onDragEnd={(_e, info) => {
+                                    if (info.offset.x < -100) {
+                                      setDirection(1);
+                                      setCurrentImage(
+                                        (prev) => (prev + 1) % imageCount
+                                      );
+                                    } else if (info.offset.x > 100) {
+                                      setDirection(-1);
+                                      setCurrentImage(
+                                        (prev) =>
+                                          (prev - 1 + imageCount) % imageCount
+                                      );
+                                    }
+                                  }}
+                                />
+                              )}
                             </AnimatePresence>
                           </div>
                           {project.image.length > 1 && (
