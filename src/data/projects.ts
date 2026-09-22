@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
       "AngularJS·Spring 기반 영업/서비스 SLM은 프레임워크 EOL·이중 스택 유지로 신규 AI·UI 기능 추가 비용이 커짐. 운영 중단 없이 strangler 전환이 필요했고, 사내 배포 제약으로 외부 SaaS 대신 자체 호스팅 스택이 요구됨.",
     role: "풀스택 단독 — pnpm 모노레포 스캐폴딩, Next.js UI, NestJS API, Prisma 스키마, LangChain AI 채팅·purpose invoke. 레거시 도메인 분석, MIGRATION_STATUS 기준 strangler 경로·SP 포팅 체크리스트 정리.",
     approach:
-      "모노레포·strangler·AI invoke를 아키텍처 문서 기준으로 단계 분리.\nARCHITECTURE — pnpm workspace로 Next.js + NestJS + Prisma·PostgreSQL 공유 타입 단일 배포\nMIGRATION_STATUS — strangler fig 도메인 단위 점진 전환, 레거시 AngularJS·Spring API 병행\npurpose invoke — LangChain 업무 화면 AI 보조, Hybrid RAG/chat-agent와 분리된 SLM 내장 경로\nSP_PORTING_CHECKLIST — stored procedure 단계적 Prisma·SQL 이전\nTrade-off: big-bang 대신 점진 전환 — 이중 코드베이스·이중 배포 유지 vs 운영 중단·롤백 리스크 절감",
+      "모노레포·strangler·AI invoke를 아키텍처 문서 기준으로 단계 분리.\nARCHITECTURE — pnpm workspace로 Next.js + NestJS + Prisma·PostgreSQL 공유 타입 단일 배포\nMIGRATION_STATUS — strangler fig 도메인 단위 점진 전환, 레거시 AngularJS·Spring API 병행\npurpose invoke — LangChain 업무 화면 AI 보조, Hybrid RAG/chat-agent와 분리된 SLM 내장 경로\nSP_PORTING_CHECKLIST — stored procedure 단계적 Prisma·SQL 이전\nTrade-off: big-bang 대신 점진 전환 — 이중 코드베이스와 이중 배포 유지 vs 운영 중단·롤백 리스크 절감",
     result:
       "모노레포·Prisma 데이터 계층 전환 및 strangler 1차 도메인 스테이징 병행 운영 확인. LangChain purpose invoke는 시나리오 테스트로 동작 검증(정량 KPI·마이그레이션 % 미기재). SP 포팅은 체크리스트 기준 단계적 진행 중.",
     architecture: `[Next.js App] ──REST──▶ [NestJS API] ──Prisma──▶ [PostgreSQL]
