@@ -109,8 +109,12 @@
     @apply border-t-4 border-primary-500/80 dark:border-primary-400/70;
   }
 
-  .project-period {
-    @apply text-xs font-medium tracking-wide text-primary-700/90 dark:text-primary-300/90 mb-1.5;
+  .project-card-meta {
+    @apply mt-3 text-xs font-medium text-dark-500 dark:text-dark-400 leading-snug break-words;
+  }
+
+  .project-card-meta-sep {
+    @apply mx-1.5 text-dark-400 dark:text-dark-500;
   }
 
   .project-card-title {

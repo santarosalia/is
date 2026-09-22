@@ -157,10 +157,35 @@ function ProjectThumbnail({ project, featured = false }: ProjectThumbnailProps) 
   );
 }
 
+interface ProjectCardMetaProps {
+  project: Project;
+  showScope: boolean;
+}
+
+function ProjectCardMeta({ project, showScope }: ProjectCardMetaProps) {
+  const scopeLabel =
+    inferProjectScope(project) === "company" ? "회사" : "개인";
+
+  return (
+    <p className="project-card-meta">
+      {showScope && (
+        <>
+          <span>{scopeLabel}</span>
+          <span className="project-card-meta-sep" aria-hidden="true">
+            ·
+          </span>
+        </>
+      )}
+      <span>{project.period}</span>
+    </p>
+  );
+}
+
 interface ProjectCardProps {
   project: Project;
   featured?: boolean;
   index: number;
+  showScope: boolean;
   onOpen: (project: Project) => void;
 }
 
@@ -168,6 +193,7 @@ function ProjectCard({
   project,
   featured = false,
   index,
+  showScope,
   onOpen,
 }: ProjectCardProps) {
   const hasThumbnail = Boolean(project.thumbnail);
@@ -199,16 +225,13 @@ function ProjectCard({
           featured ? "p-6 sm:p-7" : "p-4 sm:p-5"
         }`}
       >
-        <div className="mb-3 min-w-0">
-          <p className="project-period">{project.period}</p>
-          <h3
-            className={`project-card-title ${
-              featured ? "project-card-title-featured" : ""
-            }`}
-          >
-            {project.title}
-          </h3>
-        </div>
+        <h3
+          className={`project-card-title mb-3 min-w-0 ${
+            featured ? "project-card-title-featured" : ""
+          }`}
+        >
+          {project.title}
+        </h3>
 
         <p
           className={`project-card-description ${
@@ -226,8 +249,9 @@ function ProjectCard({
           />
         </div>
 
-        <div className="mt-auto">
+        <div className="mt-auto pt-4 min-w-0 border-t border-slate-100 dark:border-dark-600/80">
           <ProjectLinks project={project} featured={featured} />
+          <ProjectCardMeta project={project} showScope={showScope} />
         </div>
       </div>
     </motion.div>
@@ -316,6 +340,7 @@ const Projects = () => {
                   project={project}
                   featured
                   index={index}
+                  showScope={scopeFilter === "all"}
                   onOpen={openModal}
                 />
               ))}
@@ -336,6 +361,7 @@ const Projects = () => {
                   key={project.title}
                   project={project}
                   index={index}
+                  showScope={scopeFilter === "all"}
                   onOpen={openModal}
                 />
               ))}
