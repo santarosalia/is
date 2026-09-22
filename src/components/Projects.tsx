@@ -39,6 +39,11 @@ function inferProjectScope(project: Project): "company" | "personal" {
     "AI-Agent",
     "크롬",
     "문서 추출",
+    "SLM",
+    "Hybrid RAG",
+    "Chat Agent",
+    "Langfuse",
+    "Worktro",
   ];
   if (companyTitles.some((keyword) => project.title.includes(keyword))) {
     return "company";
@@ -306,9 +311,9 @@ const Projects = () => {
         >
           <h2 className="section-heading">프로젝트</h2>
           <p className="section-subtitle">
-            주로 사용하는 기술 스택인 TypeScript, Vue3, React, NestJS, Java
-            Spring을 활용하여 개발한 프로젝트들입니다. 각 프로젝트는 사용자
-            경험과 코드 품질을 모두 고려하여 개발되었습니다.
+            주로 사용하는 TypeScript, Next.js, NestJS, RAG 스택으로 개발한
+            프로젝트입니다. SLM Rewrite · Hybrid RAG · Chat Agent 3건은
+            문제·역할·접근·결과 케이스 스터디로 상세히 정리했습니다.
           </p>
         </motion.div>
 
