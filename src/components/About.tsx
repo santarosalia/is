@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { User, Code, Coffee } from "lucide-react";
+import { Code, Coffee, Briefcase } from "lucide-react";
 
 const About = () => {
   const stats = [
     { icon: Code, label: "코드 라인", value: "50K+" },
     { icon: Coffee, label: "커피 컵", value: "1000+" },
-    { icon: User, label: "경력 연차", value: "3+" },
+    { icon: Briefcase, label: "경력 연차", value: "3+" },
   ];
 
   return (
@@ -24,7 +24,6 @@ const About = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Image & Stats */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -32,20 +31,28 @@ const About = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            {/* Profile Image */}
-            <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 mx-auto rounded-full bg-gradient-to-br from-primary-400 to-primary-600 p-1">
-                <div className="w-full h-full rounded-full bg-gray-200 dark:bg-dark-700 flex items-center justify-center">
-                  <User
-                    size={80}
-                    className="md:w-[120px] md:h-[120px] text-gray-400 dark:text-gray-500"
-                  />
+            {/* Branded Avatar */}
+            <div className="relative w-64 h-64 md:w-72 md:h-72 mx-auto">
+              <div className="w-full h-full rounded-full bg-gradient-to-br from-primary-400 via-primary-600 to-slate-800 p-1 shadow-lg">
+                <div className="relative w-full h-full rounded-full bg-gradient-to-br from-slate-800 via-primary-900 to-slate-900 flex flex-col items-center justify-center overflow-hidden">
+                  <div
+                    className="absolute inset-0 opacity-30"
+                    aria-hidden="true"
+                  >
+                    <div className="absolute -top-4 -right-4 w-28 h-28 rounded-full bg-primary-400 blur-2xl" />
+                    <div className="absolute -bottom-6 -left-6 w-36 h-36 rounded-full bg-blue-300 blur-3xl" />
+                  </div>
+                  <span className="relative text-5xl md:text-6xl font-bold text-white tracking-tight select-none">
+                    KD
+                  </span>
+                  <span className="relative mt-2 text-sm font-medium text-primary-200/90 tracking-widest">
+                    김동현
+                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-3 gap-4 sm:gap-6">
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -70,7 +77,6 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -95,7 +101,6 @@ const About = () => {
               </p>
             </div>
 
-            {/* Skills Preview */}
             <div>
               <h4 className="text-xl font-semibold text-dark-900 dark:text-white mb-4">
                 주요 기술 스택
