@@ -154,7 +154,7 @@
 
   .case-study-body {
     @apply text-sm sm:text-[0.9375rem] text-dark-600 dark:text-dark-300
-      leading-relaxed break-words;
+      leading-relaxed break-words whitespace-pre-line;
   }
 
   .case-study-architecture {
