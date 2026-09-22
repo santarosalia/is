@@ -59,10 +59,10 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-dark-900 dark:text-white mb-4">
+          <h2 className="section-heading">
             연락하기
           </h2>
-          <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto">
+          <p className="section-subtitle">
             새로운 프로젝트나 협업 기회에 대해 이야기하고 싶으시다면 언제든 연락해주세요.
             빠른 응답을 드리겠습니다.
           </p>
@@ -74,7 +74,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-lg"
+            className="bg-white dark:bg-dark-700 rounded-xl p-6 sm:p-8 shadow-md ring-1 ring-slate-200/80 dark:ring-dark-600"
           >
             <h3 className="text-2xl font-bold text-dark-900 dark:text-white mb-6">
               메시지 보내기
@@ -92,7 +92,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-800 text-dark-900 dark:text-white"
+                    className="w-full px-4 py-3 border border-slate-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-dark-800 text-dark-900 dark:text-white transition-colors duration-200"
                     placeholder="홍길동"
                   />
                 </div>
@@ -107,7 +107,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-800 text-dark-900 dark:text-white"
+                    className="w-full px-4 py-3 border border-slate-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-dark-800 text-dark-900 dark:text-white transition-colors duration-200"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -138,7 +138,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-800 text-dark-900 dark:text-white resize-none"
+                  className="w-full px-4 py-3 border border-slate-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-dark-800 text-dark-900 dark:text-white resize-none transition-colors duration-200"
                   placeholder="프로젝트에 대해 자세히 설명해주세요..."
                 />
               </div>
@@ -191,7 +191,7 @@ const Contact = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="flex items-center gap-4 p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm hover:shadow-md ring-1 ring-slate-200/60 dark:ring-dark-600 transition-all duration-200 interactive-focus"
                     >
                       {content}
                     </motion.a>
@@ -202,7 +202,7 @@ const Contact = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="flex items-center gap-4 p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm"
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm ring-1 ring-slate-200/60 dark:ring-dark-600"
                     >
                       {content}
                     </motion.div>
@@ -227,7 +227,7 @@ const Contact = () => {
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.1, y: -2 }}
-                    className="p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400"
+                    className="p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm hover:shadow-md ring-1 ring-slate-200/60 dark:ring-dark-600 transition-all duration-200 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 interactive-focus"
                     aria-label={social.label}
                   >
                     <social.icon size={24} />
@@ -236,15 +236,15 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl p-6 text-white">
+            <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl p-6 text-white shadow-md">
               <h4 className="text-xl font-bold mb-2">현재 상태</h4>
-              <p className="mb-4">
+              <p className="mb-4 text-primary-50 leading-relaxed">
                 새로운 프로젝트와 협업 기회를 찾고 있습니다.
                 흥미로운 제안이나 기술적인 논의가 있으시면 언제든 연락해주세요!
               </p>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-sm">즉시 응답 가능</span>
+                <div className="w-3 h-3 bg-emerald-300 rounded-full animate-pulse" aria-hidden="true" />
+                <span className="text-sm font-medium text-white">즉시 응답 가능</span>
               </div>
             </div>
           </motion.div>
