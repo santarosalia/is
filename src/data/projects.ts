@@ -87,6 +87,103 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    title: "Hybrid RAG",
+    description:
+      "Parser 결과를 PostgreSQL에 적재하고 Dense(pgvector)+Sparse(FTS/Kiwi) 하이브리드 검색 → rerank → 출처 기반 LLM 답변을 제공하는 RAG API (EDEN-TNS)",
+    image: [],
+    thumbnail: "",
+    technologies: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "BGE-M3",
+      "TEI",
+      "Docker",
+    ],
+    github: "",
+    live: "",
+    featured: false,
+    detailedDescription:
+      "EDEN-TNS에서 문서 파싱 결과를 PostgreSQL에 적재하고, Dense(pgvector)와 Sparse(FTS/Kiwi) 하이브리드 검색으로 관련 청크를 조회한 뒤 rerank하여 최종 컨텍스트를 구성합니다. BGE-M3 임베딩과 TEI(Text Embeddings Inference) 서빙, FastAPI 기반 RAG API로 출처(citation)가 포함된 LLM 답변을 제공합니다.",
+    features: [
+      "문서 Parser 결과 PostgreSQL 적재",
+      "Dense(pgvector) + Sparse(FTS/Kiwi) 하이브리드 검색",
+      "검색 결과 rerank 및 컨텍스트 구성",
+      "출처(citation) 기반 LLM 답변 생성",
+      "BGE-M3 임베딩 및 TEI 서빙",
+      "FastAPI RAG API (EDEN-TNS)",
+    ],
+    challenges: [
+      "Dense·Sparse 검색 결과 융합 및 가중치 튜닝",
+      "pgvector 인덱스 및 FTS/Kiwi 한국어 검색 품질 최적화",
+      "rerank 파이프라인과 LLM 컨텍스트 길이 균형",
+      "출처 추적 및 citation 포맷 일관성 유지",
+      "TEI·PostgreSQL Docker 기반 운영 환경 구성",
+    ],
+  },
+  {
+    title: "Chat Agent",
+    description:
+      "NestJS+Next.js 모노레포 LangGraph RAG 채팅 에이전트. 외부 RAG retrieve·세션·SSE 스트리밍, Langfuse 트레이싱 (EDEN-TNS)",
+    image: [],
+    thumbnail: "",
+    technologies: [
+      "TypeScript",
+      "NestJS",
+      "Next.js",
+      "LangGraph",
+      "Prisma",
+      "PostgreSQL",
+      "Langfuse",
+    ],
+    github: "",
+    live: "",
+    featured: true,
+    detailedDescription:
+      "EDEN-TNS에서 NestJS와 Next.js로 구성된 pnpm 모노레포 LangGraph RAG 채팅 에이전트입니다. 외부 Hybrid RAG API를 retrieve 소스로 연동하고, Prisma·PostgreSQL로 세션을 관리하며 SSE 스트리밍으로 실시간 응답을 제공합니다. Langfuse로 대화·도구 호출 트레이스를 수집해 품질 모니터링과 평가 파이프라인과 연계합니다.",
+    features: [
+      "NestJS + Next.js pnpm 모노레포",
+      "LangGraph 기반 RAG 채팅 에이전트",
+      "외부 RAG API retrieve 연동",
+      "Prisma + PostgreSQL 세션 관리",
+      "SSE 스트리밍 응답",
+      "Langfuse 트레이싱 (EDEN-TNS)",
+    ],
+    challenges: [
+      "LangGraph 에이전트와 외부 RAG retrieve 연동",
+      "SSE 스트리밍과 세션 상태 일관성 유지",
+      "Langfuse 트레이스와 대화·도구 호출 상관관계 설계",
+      "모노레포 프론트·백엔드 공유 타입 및 빌드 파이프라인",
+    ],
+  },
+  {
+    title: "Langfuse Runner",
+    description:
+      "Langfuse dataset을 Experiment runner SDK로 돌리는 NestJS 서비스. 웹훅/API로 chat-agent 평가 실행 (EDEN-TNS)",
+    image: [],
+    thumbnail: "",
+    technologies: ["TypeScript", "NestJS", "Langfuse", "Docker"],
+    github: "",
+    live: "",
+    featured: false,
+    detailedDescription:
+      "EDEN-TNS에서 Langfuse dataset을 Experiment runner SDK로 실행하는 NestJS 평가 서비스입니다. 웹훅·REST API를 통해 Chat Agent 평가를 트리거하고, Langfuse에 실험 결과를 기록합니다. Docker로 배포해 CI·수동 평가 워크플로우에 통합합니다.",
+    features: [
+      "Langfuse dataset Experiment runner SDK 실행",
+      "웹훅·REST API로 평가 트리거",
+      "Chat Agent RAG 품질 평가 연동",
+      "Langfuse 실험 결과 기록",
+      "Docker 기반 배포 (EDEN-TNS)",
+    ],
+    challenges: [
+      "Langfuse Experiment runner SDK와 NestJS 서비스 통합",
+      "웹훅·API 기반 비동기 평가 실행 및 상태 관리",
+      "Chat Agent와 평가 파이프라인 end-to-end 연계",
+      "Docker 환경에서 Langfuse·runner 의존성 구성",
+    ],
+  },
+  {
     title: "메랜파티 - 메이플랜드 파티 매칭 플랫폼",
     description:
       "메이플랜드 게임 유저들을 위한 실시간 파티 사냥 매칭 커뮤니티 서비스입니다. WebSocket과 Redis Pub/Sub을 활용한 마이크로서비스 아키텍처로 실시간 알림과 파티 매칭 기능을 제공합니다.",
