@@ -5,7 +5,7 @@ export const PROJECTS: Project[] = [
     title: "MagicClaw",
     description:
       "MCP(Model Context Protocol) 서버를 등록·관리하고, 채팅 시 해당 도구를 활용하는 자체 호스팅 AI 에이전트 플랫폼입니다. NestJS 백엔드와 Next.js 웹 UI, 크로스 플랫폼 CLI를 통해 로컬 환경에서 에이전트를 구축·운영할 수 있습니다.",
-    image: ["/magicclaw.png", "/magicclaw.mov"],
+    image: ["/magicclaw.png", "/magicclaw1.png", "/magicclaw2.png", "/magicclaw3.png"],
     duration: "2026.02 ~ 2026.07",
     teamSize: "1",
     thumbnail: "/magicclaw.png",
@@ -218,8 +218,8 @@ export const PROJECTS: Project[] = [
     image: ["/aicenter.gif"],
     thumbnail: "/worktro_logo.png",
     technologies: ["Vue3", "TypeScript", "Canvas API", "PDF.js"],
-    github: "https://github.com",
-    live: "https://example.com",
+    github: "",
+    live: "",
     featured: false,
     detailedDescription:
       "OCR(Optical Character Recognition) 기능을 위한 프론트엔드 모듈을 개발했습니다. 문서 OCR과 테이블 OCR 기능을 구현하고, Canvas API를 활용하여 문서 미리보기 기능을 제공합니다. 또한 문서 레이블링 기능과 학습 기능, OCR 테스트 기능을 통해 사용자가 OCR 결과를 검증하고 개선할 수 있도록 했습니다.",

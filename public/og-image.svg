@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="180" fill="#3b82f6" opacity="0.15"/>
+  <circle cx="200" cy="520" r="220" fill="#6366f1" opacity="0.12"/>
+  <text x="80" y="280" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="72" font-weight="700">Kim Donghyun</text>
+  <text x="80" y="350" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="42" font-weight="500">@Ÿ</text>
+  <text x="80" y="430" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="28">Ä§› ê ∑ React ∑ TypeScript ∑ NestJS</text>
+  <text x="80" y="560" fill="#64748b" font-family="system-ui, sans-serif" font-size="22">lunatic.monster</text>
+</svg>

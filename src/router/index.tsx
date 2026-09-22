@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
-import Universe from '../view/Universe';
+import UniverseRoute from '../view/UniverseRoute';
 
 export const router = createBrowserRouter([
   {
@@ -9,6 +9,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '/universe',
-    element: <Universe onShowDialog={() => {}} />,
+    element: <UniverseRoute />,
   },
 ]);

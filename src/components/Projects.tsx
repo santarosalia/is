@@ -4,6 +4,7 @@ import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import ProjectModal from "./ProjectModal";
 import type { Project } from "../types/project";
 import { PROJECTS } from "../data/projects";
+import { hasValidLink } from "../constants/site";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -93,24 +94,28 @@ const Projects = () => {
                   className="flex gap-4"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {project.github ? (
+                  {hasValidLink(project.github) && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
                     >
-                      GitHub
+                      <Github size={18} />
+                      <span className="text-sm">GitHub</span>
                     </a>
-                  ) : null}
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
-                  >
-                    <ExternalLink size={18} />
-                    <span className="text-sm">Live Demo</span>
-                  </a>
+                  )}
+                  {hasValidLink(project.live) && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                    >
+                      <ExternalLink size={18} />
+                      <span className="text-sm">Live Demo</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -175,7 +180,7 @@ const Projects = () => {
                   className="flex gap-3"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {project.github ? (
+                  {hasValidLink(project.github) && (
                     <a
                       href={project.github}
                       target="_blank"
@@ -184,15 +189,17 @@ const Projects = () => {
                     >
                       <Github size={16} />
                     </a>
-                  ) : null}
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
-                  >
-                    <ExternalLink size={16} />
-                  </a>
+                  )}
+                  {hasValidLink(project.live) && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                    >
+                      <ExternalLink size={16} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

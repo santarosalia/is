@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
+import { CONTACT_EMAIL } from "../constants/site";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -38,7 +39,7 @@ const Footer = () => {
           >
             <h4 className="text-lg font-semibold text-white">연락처</h4>
             <div className="space-y-2 text-gray-400">
-              <p>mdc@kakao.com</p>
+              <p>{CONTACT_EMAIL}</p>
             </div>
           </motion.div>
         </div>
@@ -52,7 +53,7 @@ const Footer = () => {
           className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-gray-400 text-sm">
-            © 2025 dope. All rights reserved.
+            © 2025 Kim Donghyun (김동현). All rights reserved.
           </p>
           <motion.button
             onClick={scrollToTop}
