@@ -1,6 +1,22 @@
 import { motion } from "framer-motion";
 import { Code, Database, Palette, Zap } from "lucide-react";
 
+type StrengthTier = "주력" | "숙련" | "활용" | "경험";
+
+const getStrengthTier = (level: number): StrengthTier => {
+  if (level >= 85) return "주력";
+  if (level >= 75) return "숙련";
+  if (level >= 60) return "활용";
+  return "경험";
+};
+
+const tierStyles: Record<StrengthTier, string> = {
+  주력: "text-primary-700 dark:text-primary-300 bg-primary-100 dark:bg-primary-900/40",
+  숙련: "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/25",
+  활용: "text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-dark-600",
+  경험: "text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-dark-600/60",
+};
+
 const Skills = () => {
   const skillCategories = [
     {
@@ -65,8 +81,11 @@ const Skills = () => {
           </h2>
           <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto">
             프론트엔드 개발에 특화되어 있으면서도 백엔드까지 다룰 수 있는 기술
-            스택을 보유하고 있습니다. 지속적으로 새로운 기술을 학습하며 더 나은
-            개발자로 성장하고 있습니다.
+            스택을 보유하고 있습니다. 막대는 프로젝트 경험 기준{" "}
+            <span className="font-medium text-dark-800 dark:text-dark-200">
+              상대적 숙련도
+            </span>
+            를 나타냅니다.
           </p>
         </motion.div>
 
@@ -93,39 +112,44 @@ const Skills = () => {
               </div>
 
               <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: skillIndex * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium text-dark-700 dark:text-dark-300">
-                        {skill.name}
-                      </span>
-                      <span className="text-sm text-primary-600 dark:text-primary-400 font-medium">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-dark-600 rounded-full h-2">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                        viewport={{ once: true }}
-                        className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full"
-                      />
-                    </div>
-                  </motion.div>
-                ))}
+                {category.skills.map((skill, skillIndex) => {
+                  const tier = getStrengthTier(skill.level);
+                  return (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: skillIndex * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm font-medium text-dark-700 dark:text-dark-300">
+                          {skill.name}
+                        </span>
+                        <span
+                          className={`text-xs font-semibold px-2 py-0.5 rounded-full ${tierStyles[tier]}`}
+                        >
+                          {tier}
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 dark:bg-dark-600 rounded-full h-2">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: skillIndex * 0.1 }}
+                          viewport={{ once: true }}
+                          className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full"
+                          aria-label={`${skill.name} 상대적 숙련도 ${tier}`}
+                        />
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Additional Skills */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

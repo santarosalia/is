@@ -64,7 +64,9 @@ const Contact = () => {
           </h2>
           <p className="section-subtitle">
             새로운 프로젝트나 협업 기회에 대해 이야기하고 싶으시다면 언제든 연락해주세요.
-            빠른 응답을 드리겠습니다.
+            <span className="block mt-1 text-dark-600 dark:text-dark-300">
+              폼 작성 후 이메일 앱으로 전송됩니다.
+            </span>
           </p>
         </motion.div>
 
@@ -82,7 +84,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                  <label htmlFor="name" className="form-label">
                     이름
                   </label>
                   <input
@@ -92,12 +94,12 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-slate-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-dark-800 text-dark-900 dark:text-white transition-colors duration-200"
+                    className="form-input"
                     placeholder="홍길동"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                  <label htmlFor="email" className="form-label">
                     이메일
                   </label>
                   <input
@@ -107,13 +109,13 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-slate-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-dark-800 text-dark-900 dark:text-white transition-colors duration-200"
+                    className="form-input"
                     placeholder="your@email.com"
                   />
                 </div>
               </div>
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                <label htmlFor="subject" className="form-label">
                   제목
                 </label>
                 <input
@@ -123,12 +125,12 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-800 text-dark-900 dark:text-white"
+                  className="form-input"
                   placeholder="프로젝트 협업 제안"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-dark-700 dark:text-dark-300 mb-2">
+                <label htmlFor="message" className="form-label">
                   메시지
                 </label>
                 <textarea
@@ -138,7 +140,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-slate-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-dark-800 text-dark-900 dark:text-white resize-none transition-colors duration-200"
+                  className="form-input resize-none"
                   placeholder="프로젝트에 대해 자세히 설명해주세요..."
                 />
               </div>
@@ -176,7 +178,7 @@ const Contact = () => {
                         <h4 className="font-medium text-dark-900 dark:text-white">
                           {info.title}
                         </h4>
-                        <p className="text-dark-600 dark:text-dark-300">
+                        <p className="helper-text">
                           {info.value}
                         </p>
                       </div>

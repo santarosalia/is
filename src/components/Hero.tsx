@@ -22,10 +22,10 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 sm:px-6"
+      className="min-h-[85vh] flex items-center justify-center relative overflow-hidden px-4 sm:px-6 pt-16"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-slate-200/80 to-white" />
-      <div className="container-custom z-10 py-24 md:py-28">
+      <div className="container-custom z-10 py-16 md:py-20">
         <div className="text-center max-w-3xl mx-auto">
           <motion.p
             {...fadeUp}
@@ -62,7 +62,7 @@ const Hero = () => {
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-10 mb-12 w-full sm:w-auto"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mt-8 mb-8 w-full sm:w-auto"
           >
             <motion.button
               type="button"
@@ -88,7 +88,7 @@ const Hero = () => {
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.65 }}
-            className="flex justify-center gap-4 sm:gap-6 mb-16"
+            className="flex justify-center gap-4 sm:gap-5 mb-6"
           >
             <motion.a
               href="https://github.com/santarosalia"

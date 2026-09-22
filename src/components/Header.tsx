@@ -7,19 +7,15 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // 스크롤 이벤트 핸들러
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // 스크롤이 맨 위에 있거나 위로 스크롤할 때는 헤더를 보이게
       if (currentScrollY <= 0) {
         setIsVisible(true);
       } else if (currentScrollY < lastScrollY) {
-        // 위로 스크롤할 때
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // 아래로 스크롤할 때 (100px 이상 스크롤된 후)
         setIsVisible(true);
       }
 
@@ -41,17 +37,26 @@ const Header = () => {
     { name: "연락", sectionId: "contact" },
   ];
 
-  const onClickMenu = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    sectionId: string
-  ) => {
-    e.preventDefault();
+  const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
       const offset = section.offsetTop - 80;
       window.scrollTo({ top: offset, behavior: "smooth" });
     }
     setIsMenuOpen(false);
+  };
+
+  const onClickMenu = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId: string
+  ) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
+  };
+
+  const onClickBrand = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    scrollToSection("home");
   };
 
   return (
@@ -62,7 +67,7 @@ const Header = () => {
           animate={{ y: 0 }}
           exit={{ y: -100 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-2xl"
+          className="fixed top-0 left-0 right-0 z-50 overflow-x-clip bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-2xl"
           style={{
             filter: "drop-shadow(0 0 20px rgba(255, 255, 255, 0.1))",
             background:
@@ -71,55 +76,53 @@ const Header = () => {
             WebkitBackdropFilter: "blur(20px) saturate(180%)",
           }}
         >
-          <div className="container-custom">
-            <div className="flex items-center justify-between h-16">
+          <div className="container-custom px-4 sm:px-6">
+            <div className="flex items-center justify-between h-16 min-w-0">
+              {/* Brand */}
+              <motion.a
+                href="#home"
+                onClick={onClickBrand}
+                whileHover={{ scale: 1.02 }}
+                className="flex items-center gap-2.5 shrink-0 interactive-focus rounded-lg py-1 pr-2"
+                aria-label="홈으로 이동"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary-600 to-slate-800 text-sm font-bold text-white shadow-sm">
+                  K
+                </span>
+                <span className="hidden sm:flex flex-col leading-tight">
+                  <span className="text-sm font-bold text-slate-900 tracking-tight">
+                    Kim Donghyun
+                  </span>
+                  <span className="text-xs font-medium text-slate-600">
+                    김동현
+                  </span>
+                </span>
+              </motion.a>
+
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center space-x-8 p-10">
+              <nav className="hidden md:flex items-center gap-6 lg:gap-8 min-w-0">
                 {navItems.map((item) => (
                   <motion.a
                     key={item.name}
                     href={`#${item.sectionId}`}
                     onClick={(e) => onClickMenu(e, item.sectionId)}
-                    whileHover={{ y: -2, scale: 1.08 }}
-                    className="text-gray-800  hover:text-gray-900 hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative"
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    className="text-gray-800 hover:text-gray-900 transition-all duration-200 font-medium relative whitespace-nowrap"
                   >
-                    <span className="relative">
-                      {item.name}
-                      {/* 네온 효과 */}
-                      <span className="absolute inset-0 blur-sm opacity-40 text-blue-400 select-none pointer-events-none">
-                        {item.name}
-                      </span>
-                    </span>
+                    {item.name}
                   </motion.a>
                 ))}
               </nav>
 
-              {/* Theme Toggle & Mobile Menu Button */}
-              <div className="flex items-center space-x-4 p-4">
+              {/* Mobile Menu Button */}
+              <div className="flex items-center md:hidden shrink-0">
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="md:hidden p-2 rounded-lg bg-white/20 hover:bg-white/30 text-black drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] border border-black/30 backdrop-blur-sm relative overflow-hidden"
-                  style={{
-                    filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.15))",
-                    background:
-                      "linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.25) 100%)",
-                    backdropFilter: "blur(10px) saturate(140%)",
-                    WebkitBackdropFilter: "blur(10px) saturate(140%)",
-                  }}
+                  className="p-2 rounded-lg bg-white/20 hover:bg-white/30 text-black border border-black/30 backdrop-blur-sm"
+                  aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+                  aria-expanded={isMenuOpen}
                 >
-                  <span className="relative z-10">
-                    {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-                  </span>
-                  {/* 버튼 글로우 */}
-                  <motion.div
-                    className="absolute inset-0 bg-blue-400/10 rounded-lg"
-                    animate={{ opacity: [0.1, 0.3, 0.1], scale: [1, 1.08, 1] }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
+                  {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
                 </button>
               </div>
             </div>
@@ -130,30 +133,17 @@ const Header = () => {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="md:hidden py-4 border-t border-black/20 bg-white/10 backdrop-blur-xl shadow-2xl"
-                style={{
-                  filter: "drop-shadow(0 0 15px rgba(255, 255, 255, 0.08))",
-                  background:
-                    "linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%)",
-                  backdropFilter: "blur(15px) saturate(160%)",
-                  WebkitBackdropFilter: "blur(15px) saturate(160%)",
-                }}
+                className="md:hidden py-4 border-t border-black/20 bg-white/10 backdrop-blur-xl"
               >
-                <div className="flex flex-col space-y-4">
+                <div className="flex flex-col space-y-3 px-1">
                   {navItems.map((item) => (
                     <a
                       key={item.name}
                       href={`#${item.sectionId}`}
                       onClick={(e) => onClickMenu(e, item.sectionId)}
-                      className="text-gray-900  hover:text-black hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative ml-4 cursor-pointer"
+                      className="text-gray-900 hover:text-black transition-colors duration-200 font-medium py-1 cursor-pointer"
                     >
-                      <span className="relative">
-                        {item.name}
-                        {/* 네온 효과 */}
-                        <span className="absolute inset-0 blur-sm opacity-40 text-blue-400 select-none pointer-events-none">
-                          {item.name}
-                        </span>
-                      </span>
+                      {item.name}
                     </a>
                   ))}
                 </div>

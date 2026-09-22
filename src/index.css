@@ -8,10 +8,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   
   body {
     @apply bg-white dark:bg-dark-900 text-dark-900 dark:text-white;
+    overflow-x: hidden;
   }
 }
 
@@ -29,7 +31,19 @@
   }
 
   .section-subtitle {
-    @apply text-base md:text-lg text-dark-600 dark:text-dark-300 max-w-2xl mx-auto leading-relaxed;
+    @apply text-base md:text-lg text-dark-700 dark:text-dark-200 max-w-2xl mx-auto leading-relaxed;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 border border-slate-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-dark-800 text-dark-900 dark:text-white transition-colors duration-200 placeholder:text-slate-500 dark:placeholder:text-slate-400;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-dark-800 dark:text-dark-200 mb-2;
+  }
+
+  .helper-text {
+    @apply text-sm text-dark-600 dark:text-dark-300;
   }
 
   .interactive-focus {
