@@ -30,9 +30,9 @@ const Hero = () => {
           <motion.p
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-sm md:text-base font-semibold tracking-[0.2em] text-slate-600 uppercase mb-5"
+            className="text-sm md:text-base font-semibold tracking-wide text-slate-800 mb-4"
           >
-            Full-stack Developer
+            TypeScript · Next.js · NestJS · RAG
           </motion.p>
 
           <motion.h1
@@ -52,11 +52,9 @@ const Hero = () => {
           <motion.p
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.35 }}
-            className="mt-6 text-base md:text-lg lg:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed"
+            className="mt-5 text-base md:text-lg text-slate-600 tracking-[0.04em]"
           >
-            TypeScript · React · NestJS로 사용자 경험과 코드 품질을 모두 고려하는
-            풀스택 개발자,{" "}
-            <span className="text-slate-900 font-semibold">김동현</span>입니다.
+            fullstack · legacy modernization · RAG/agent
           </motion.p>
 
           <motion.div

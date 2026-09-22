@@ -26,7 +26,7 @@ export const PROJECTS: Project[] = [
     ],
     github: "https://github.com/santarosalia/magicclaw",
     live: "",
-    featured: true,
+    featured: false,
     detailedDescription:
       "외부 MCP 서버를 동적으로 연결해 AI 에이전트의 도구 범위를 확장할 수 있는 개인 프로젝트입니다. LangGraph 기반 대화 루프에서 OpenAI 모델이 MCP 도구를 호출하며, WebSocket으로 실시간 스트리밍 응답과 도구 실행 이벤트를 제공합니다. 장기 메모리(mem0·내장 스토어), 스킬 허브·큐레이터, 세션 FTS 검색, 텔레그램 봇 연동 등 에이전트 운영에 필요한 기능을 모듈화해 구현했습니다. Linux/macOS/Windows용 설치 스크립트와 `magicclaw` CLI로 릴리스 번들을 배포·관리할 수 있으며, Electron 데스크톱 앱도 선택적으로 지원합니다.",
     features: [
@@ -73,6 +73,18 @@ export const PROJECTS: Project[] = [
     github: "",
     live: "",
     featured: true,
+    problem:
+      "AngularJS·Spring 기반 영업/서비스 SLM은 신규 AI 기능 추가와 유지보수 비용이 동시에 증가. 운영 중단 없이 점진 전환이 필요했고, 사내 배포·보안 제약으로 외부 SaaS 대신 자체 스택이 요구됨.",
+    role: "풀스택 단독 담당 — 모노레포 스캐폴딩, Next.js UI, NestJS API, Prisma 스키마, LangChain AI 채팅·purpose invoke 연동. 레거시 도메인 분석과 strangler 전환 경로 설계.",
+    approach:
+      "pnpm workspace 모노레포로 Next.js + NestJS + Prisma·PostgreSQL을 공유 타입으로 묶고, 도메인 단위 strangler fig로 레거시 API와 병행 운영. Trade-off: big-bang 대신 점진 전환 — 이중 코드베이스 유지 부담 vs 운영 리스크·롤백 비용 절감.",
+    result:
+      "모노레포 전환 및 공유 타입 파이프라인 구축, Prisma 데이터 계층 통일. LangChain purpose invoke 프로토타입을 스테이징에서 시나리오 테스트로 검증(정량 KPI 없음).",
+    architecture: `[Next.js App] ──REST──▶ [NestJS API] ──Prisma──▶ [PostgreSQL]
+                              │
+                         [LangChain]
+                    AI Chat / Purpose Invoke
+         (Legacy AngularJS·Spring — strangler 전환 중)`,
     detailedDescription:
       "Sales Lifecycle Manager(SLM)는 영업·서비스 업무를 관리하는 레거시 시스템입니다. AngularJS와 Spring으로 구성된 기존 코드베이스를 TypeScript 기반 pnpm 모노레포로 전환하고, Next.js 프론트엔드와 NestJS 백엔드를 Prisma·PostgreSQL로 연동했습니다. LangChain을 활용한 AI 채팅과 purpose invoke 기능으로 업무 보조 에이전트를 구현했습니다.",
     features: [
@@ -106,7 +118,19 @@ export const PROJECTS: Project[] = [
     ],
     github: "",
     live: "",
-    featured: false,
+    featured: true,
+    problem:
+      "사내 문서 검색에서 dense embedding만으로는 키워드·고유명사 recall이 부족하고, sparse FTS만으로는 의미적 유사도가 떨어짐. 출처(citation)가 포함된 LLM 답변이 필요.",
+    role: "RAG 검색 파이프라인 설계·구현 — Parser 결과 PostgreSQL 적재, hybrid search·rerank, FastAPI 엔드포인트, Docker 운영 환경.",
+    approach:
+      "BGE-M3 dense(pgvector) + Kiwi FTS sparse 하이브리드 검색 → rerank → citation LLM 컨텍스트. TEI로 임베딩 서빙 분리. Trade-off: dense-only 대비 인덱스·TEI 운영 복잡도 vs keyword+semantic recall 균형.",
+    result:
+      "Docker 스테이징에서 검색→답변 end-to-end 플로우 동작 확인. 수동 golden set로 retrieval 샘플 비교, citation 포맷 일관성 점검(정량 벤치마크 없음).",
+    architecture: `[Document Parser] ──▶ [PostgreSQL]
+                         ├── pgvector (Dense, BGE-M3 via TEI)
+                         └── FTS/Kiwi (Sparse)
+                              │
+                    Hybrid Search → Rerank → LLM + Citations`,
     detailedDescription:
       "EDEN-TNS에서 문서 파싱 결과를 PostgreSQL에 적재하고, Dense(pgvector)와 Sparse(FTS/Kiwi) 하이브리드 검색으로 관련 청크를 조회한 뒤 rerank하여 최종 컨텍스트를 구성합니다. BGE-M3 임베딩과 TEI(Text Embeddings Inference) 서빙, FastAPI 기반 RAG API로 출처(citation)가 포함된 LLM 답변을 제공합니다.",
     features: [
@@ -144,6 +168,18 @@ export const PROJECTS: Project[] = [
     github: "",
     live: "",
     featured: true,
+    problem:
+      "Hybrid RAG API를 업무 채팅 UX로 연결하려면 세션 관리, SSE 실시간 응답, 대화·retrieve 품질 추적이 동시에 필요.",
+    role: "NestJS+Next.js pnpm 모노레포 — LangGraph 에이전트, Hybrid RAG retrieve 연동, Prisma 세션, SSE 스트리밍, Langfuse 트레이스 수집.",
+    approach:
+      "LangGraph agent loop + external Hybrid RAG retrieve + SSE streaming. Langfuse trace/session 상관관계 수집; Langfuse Runner(NestJS)가 dataset experiment를 webhook/API로 트리거해 observability·eval 축 연결. Trade-off: 트레이싱·eval 파이프라인 오버헤드 vs 디버깅·회귀 검증 가시성.",
+    result:
+      "채팅→retrieve→스트리밍 응답 end-to-end 플로우를 스테이징에서 시나리오 테스트로 확인. Langfuse trace 수집 및 Runner SDK dataset experiment 실행·기록 검증(정량 SLA 없음).",
+    architecture: `[Next.js UI] ──SSE──▶ [NestJS + LangGraph Agent]
+                            ├── retrieve ──▶ [Hybrid RAG API]
+                            ├── sessions ──▶ [PostgreSQL / Prisma]
+                            └── traces ──▶ [Langfuse]
+                                         └──▶ [Langfuse Runner] (dataset eval)`,
     detailedDescription:
       "EDEN-TNS에서 NestJS와 Next.js로 구성된 pnpm 모노레포 LangGraph RAG 채팅 에이전트입니다. 외부 Hybrid RAG API를 retrieve 소스로 연동하고, Prisma·PostgreSQL로 세션을 관리하며 SSE 스트리밍으로 실시간 응답을 제공합니다. Langfuse로 대화·도구 호출 트레이스를 수집해 품질 모니터링과 평가 파이프라인과 연계합니다.",
     features: [
@@ -212,7 +248,7 @@ export const PROJECTS: Project[] = [
     ],
     github: "",
     live: "https://maparty.kr",
-    featured: true,
+    featured: false,
     duration: "2025.10 ~ 2025.10",
     detailedDescription:
       "메이플랜드 게임 유저들을 위한 실시간 파티 사냥 매칭 커뮤니티 서비스입니다. 2개의 독립적인 마이크로서비스(maparty: Next.js 메인 앱, mgsocket: NestJS WebSocket 서버)로 구성되어 있으며, Redis Pub/Sub을 통해 실시간으로 연동됩니다. Discord OAuth 소셜 로그인, 포지션 기반 파티 매칭, 드래그 앤 드롭 파티원 관리, 인재풀(관심 맵 등록) 시스템을 제공합니다. VAPID 기반 Web Push로 브라우저가 닫혀있어도 알림을 수신할 수 있으며, Service Worker를 통한 PWA 기능을 지원합니다.",
@@ -263,7 +299,7 @@ export const PROJECTS: Project[] = [
     ],
     github: "",
     live: "https://wd.digitalworker.co.kr",
-    featured: true,
+    featured: false,
     detailedDescription:
       "Worktro는 웹 기반으로 동작하는 RPA(Robotic Process Automation) 솔루션입니다. 드래그앤드롭 방식의 RPA 프로세스 개발 툴을 담당하여 개발했습니다. 사용자가 직관적으로 RPA 워크플로우를 설계할 수 있도록 Canvas API와 드래그앤드롭 인터페이스를 구현했습니다. 프론트엔드, 서버, 클라이언트 앱 간의 세션 관리를 통해 프로세스 실행을 제어할 수 있도록 구현했습니다.",
     features: [
@@ -301,7 +337,7 @@ export const PROJECTS: Project[] = [
     ],
     github: "",
     live: "",
-    featured: true,
+    featured: false,
     detailedDescription:
       "NestJS 프레임워크를 사용하여 확장 가능하고 유지보수가 용이한 RESTful API를 구축했습니다. Prisma를 활용한 PostgreSQL 데이터베이스 연동, JWT를 통한 사용자 인증, Swagger를 통한 API 문서 자동 생성 기능을 구현했습니다. 모듈화된 구조로 각 기능별로 분리하여 개발했습니다.",
     features: [
@@ -388,7 +424,7 @@ export const PROJECTS: Project[] = [
     thumbnail: "/worktro_logo.png",
     technologies: ["C#", "WebView", "Vue3", "Vuetify", "TypeScript"],
     github: "",
-    live: "https://wa.digitalworker.co.kr",
+    live: "",
     featured: false,
     detailedDescription:
       "Worktro RPA 솔루션과 연동되는 프로세스 실행기를 개발했습니다. C# WebView를 기반으로 하여 Vue3와 Vuetify를 활용한 모던한 UI를 구성했습니다. 기존 Worktro 백엔드 시스템과 연동하여 배포된 RPA 프로세스를 즉시 실행할 수 있는 독립적인 실행 환경을 제공합니다.",
@@ -503,7 +539,7 @@ export const PROJECTS: Project[] = [
     ],
     github: "https://github.com/santarosalia/tetrs",
     live: "https://tetr-sigma.vercel.app/",
-    featured: true,
+    featured: false,
     image: ["/tetr.gif"],
     detailedDescription:
       "실시간 멀티플레이어 테트리스 게임을 개발했습니다. NestJS 백엔드에서 WebSocket을 통해 실시간 게임 상태를 관리하고, Redis를 활용하여 게임 세션과 플레이어 정보를 저장합니다. 프론트엔드는 React와 Pixi.js를 조합하여 고성능 2D 그래픽 렌더링을 구현했으며, Matter.js 물리 엔진으로 테트리스 블록의 충돌 감지와 게임 로직을 처리합니다. Vite를 사용하여 빠른 개발 환경을 구축하고, 실시간 멀티플레이어 기능을 통해 여러 사용자가 동시에 게임을 즐길 수 있습니다.",
@@ -553,8 +589,8 @@ export const PROJECTS: Project[] = [
       "Prisma",
     ],
     github: "",
-    live: "https://docuops.ngrok.dev/",
-    featured: true,
+    live: "",
+    featured: false,
     image: ["/docuops1.png", "/docuops2.png", "/docuops3.png"],
     detailedDescription:
       "NestJS 백엔드와 Next.js 프론트엔드로 구현된 AI 기반 문서 추출·분석 플랫폼입니다. 백엔드에서 외부 파싱 엔진으로 문서를 전송하고, RabbitMQ로 작업 상태를 비동기 수신해 문서 상태를 갱신합니다. 스키마 기반 구조화 추출(Schema/SchemaValue), RAG 기반 문서 채팅, 프로젝트·워크스페이스·공유·감사 로그·메트릭스를 지원하며, 프론트엔드는 Next.js와 Konva 캔버스로 문서 시각화 및 편집을 제공합니다.",
