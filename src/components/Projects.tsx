@@ -17,7 +17,9 @@ function inferProjectScope(project: Project): "company" | "personal" {
   ].join(" ");
 
   if (
-    blob.includes("EDEN-TNS") ||
+    blob.includes("사내 B2B") ||
+    blob.includes("사내 문서") ||
+    blob.includes("회사 프로젝트") ||
     blob.includes("Worktro") ||
     blob.includes("digitalworker") ||
     blob.includes("docuops")
