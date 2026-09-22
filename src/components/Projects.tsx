@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
 import ProjectModal from "./ProjectModal";
@@ -6,9 +6,259 @@ import type { Project } from "../types/project";
 import { PROJECTS } from "../data/projects";
 import { hasValidLink } from "../constants/site";
 
+type ScopeFilter = "all" | "company" | "personal";
+
+function inferProjectScope(project: Project): "company" | "personal" {
+  const blob = [
+    project.title,
+    project.description,
+    project.detailedDescription ?? "",
+    project.live,
+  ].join(" ");
+
+  if (
+    blob.includes("EDEN-TNS") ||
+    blob.includes("Worktro") ||
+    blob.includes("digitalworker") ||
+    blob.includes("docuops")
+  ) {
+    return "company";
+  }
+
+  if (
+    blob.includes("개인 프로젝트") ||
+    project.github.includes("github.com/santarosalia")
+  ) {
+    return "personal";
+  }
+
+  const companyTitles = [
+    "OCR",
+    "Work Assistant",
+    "WUI",
+    "AI-Agent",
+    "크롬",
+    "문서 추출",
+  ];
+  if (companyTitles.some((keyword) => project.title.includes(keyword))) {
+    return "company";
+  }
+
+  return "personal";
+}
+
+function matchesScope(project: Project, filter: ScopeFilter): boolean {
+  if (filter === "all") return true;
+  return inferProjectScope(project) === filter;
+}
+
+interface TechnologyTagsProps {
+  technologies: string[];
+  maxVisible: number;
+  compact?: boolean;
+}
+
+function TechnologyTags({
+  technologies,
+  maxVisible,
+  compact = false,
+}: TechnologyTagsProps) {
+  const visible = technologies.slice(0, maxVisible);
+  const remaining = technologies.length - maxVisible;
+
+  return (
+    <div className="flex flex-wrap gap-1.5 min-w-0">
+      {visible.map((tech) => (
+        <span
+          key={tech}
+          className={`project-tag ${compact ? "project-tag-compact" : ""}`}
+        >
+          {tech}
+        </span>
+      ))}
+      {remaining > 0 && (
+        <span className={`project-tag-more ${compact ? "project-tag-compact" : ""}`}>
+          +{remaining}
+        </span>
+      )}
+    </div>
+  );
+}
+
+interface ProjectLinksProps {
+  project: Project;
+  featured?: boolean;
+}
+
+function ProjectLinks({ project, featured = false }: ProjectLinksProps) {
+  const showGithub = hasValidLink(project.github);
+  const showLive = hasValidLink(project.live);
+
+  if (!showGithub && !showLive) return null;
+
+  return (
+    <div
+      className="flex flex-wrap items-center gap-x-4 gap-y-2 min-w-0"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {showGithub && (
+        <a
+          href={project.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`flex items-center gap-2 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 interactive-focus shrink-0 ${
+            featured ? "px-1 py-0.5" : "p-1"
+          }`}
+        >
+          <Github size={featured ? 18 : 16} aria-hidden="true" />
+          {featured && <span className="text-sm">GitHub</span>}
+        </a>
+      )}
+      {showLive && (
+        <a
+          href={project.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`flex items-center gap-2 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 interactive-focus shrink-0 ${
+            featured ? "px-1 py-0.5" : "p-1"
+          }`}
+        >
+          <ExternalLink size={featured ? 18 : 16} aria-hidden="true" />
+          {featured && <span className="text-sm">Live Demo</span>}
+        </a>
+      )}
+    </div>
+  );
+}
+
+interface ProjectThumbnailProps {
+  project: Project;
+  featured?: boolean;
+}
+
+function ProjectThumbnail({ project, featured = false }: ProjectThumbnailProps) {
+  if (!project.thumbnail) return null;
+
+  const heightClass = featured ? "h-52 sm:h-56" : "h-40 sm:h-44";
+
+  return (
+    <div
+      className={`relative ${heightClass} bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/20 shrink-0`}
+    >
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+        <img
+          src={project.thumbnail}
+          alt={project.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+    </div>
+  );
+}
+
+interface ProjectCardProps {
+  project: Project;
+  featured?: boolean;
+  index: number;
+  onOpen: (project: Project) => void;
+}
+
+function ProjectCard({
+  project,
+  featured = false,
+  index,
+  onOpen,
+}: ProjectCardProps) {
+  const hasThumbnail = Boolean(project.thumbnail);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: featured ? 50 : 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * (featured ? 0.15 : 0.08) }}
+      viewport={{ once: true }}
+      className={`group project-card min-w-0 w-full ${
+        featured ? "project-card-featured" : "project-card-standard"
+      } ${!hasThumbnail ? "project-card-text-first" : ""}`}
+      onClick={() => onOpen(project)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen(project);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`${project.title} 프로젝트 상세 보기`}
+    >
+      <ProjectThumbnail project={project} featured={featured} />
+
+      <div
+        className={`flex flex-col min-w-0 flex-1 ${
+          featured ? "p-6 sm:p-7" : "p-4 sm:p-5"
+        }`}
+      >
+        <div className="mb-3 min-w-0">
+          <p className="project-period">{project.period}</p>
+          <h3
+            className={`project-card-title ${
+              featured ? "project-card-title-featured" : ""
+            }`}
+          >
+            {project.title}
+          </h3>
+        </div>
+
+        <p
+          className={`project-card-description ${
+            featured ? "line-clamp-3 mb-5" : "line-clamp-2 mb-4"
+          }`}
+        >
+          {project.description}
+        </p>
+
+        <div className={featured ? "mb-6" : "mb-4"}>
+          <TechnologyTags
+            technologies={project.technologies}
+            maxVisible={featured ? 5 : 3}
+            compact={!featured}
+          />
+        </div>
+
+        <div className="mt-auto">
+          <ProjectLinks project={project} featured={featured} />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+const SCOPE_TABS: { id: ScopeFilter; label: string }[] = [
+  { id: "all", label: "전체" },
+  { id: "company", label: "회사" },
+  { id: "personal", label: "개인" },
+];
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [scopeFilter, setScopeFilter] = useState<ScopeFilter>("all");
+
+  const filteredProjects = useMemo(
+    () => PROJECTS.filter((project) => matchesScope(project, scopeFilter)),
+    [scopeFilter]
+  );
+
+  const featuredProjects = useMemo(
+    () => filteredProjects.filter((project) => project.featured),
+    [filteredProjects]
+  );
+
+  const otherProjects = useMemo(
+    () => filteredProjects.filter((project) => !project.featured),
+    [filteredProjects]
+  );
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
@@ -22,17 +272,15 @@ const Projects = () => {
 
   return (
     <section id="projects" className="section-padding">
-      <div className="container-custom">
+      <div className="container-custom min-w-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-14"
         >
-          <h2 className="section-heading">
-            프로젝트
-          </h2>
+          <h2 className="section-heading">프로젝트</h2>
           <p className="section-subtitle">
             주로 사용하는 기술 스택인 TypeScript, Vue3, React, NestJS, Java
             Spring을 활용하여 개발한 프로젝트들입니다. 각 프로젝트는 사용자
@@ -40,197 +288,73 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        {/* Featured Projects */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {PROJECTS.filter((p) => p.featured).map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="group relative bg-white dark:bg-dark-700 rounded-xl overflow-hidden shadow-md hover:shadow-xl ring-1 ring-slate-200/80 dark:ring-dark-600 hover:ring-primary-300/60 dark:hover:ring-primary-500/40 transition-all duration-300 flex flex-col cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-              onClick={() => openModal(project)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  openModal(project);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label={`${project.title} 프로젝트 상세 보기`}
+        <div className="flex flex-wrap justify-center gap-2 mb-10 md:mb-12">
+          {SCOPE_TABS.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setScopeFilter(tab.id)}
+              className={`project-scope-tab ${
+                scopeFilter === tab.id ? "project-scope-tab-active" : ""
+              }`}
+              aria-pressed={scopeFilter === tab.id}
             >
-              {/* Project Image */}
-              <div className="relative h-64 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/20">
-                <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-                  {project.thumbnail ? (
-                    <img
-                      src={project.thumbnail}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="text-6xl">🚀</div>
-                  )}
-                </div>
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6 flex flex-col h-full">
-                <h3 className="text-xl font-bold text-dark-900 dark:text-white mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-dark-600 dark:text-dark-300 mb-4 line-clamp-3 flex-grow">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2.5 py-1 bg-slate-100 dark:bg-dark-600 text-slate-700 dark:text-slate-200 rounded-md text-xs font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Project Links */}
-                <div
-                  className="flex gap-4"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {hasValidLink(project.github) && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 interactive-focus px-1 py-0.5"
-                    >
-                      <Github size={18} aria-hidden="true" />
-                      <span className="text-sm">GitHub</span>
-                    </a>
-                  )}
-                  {hasValidLink(project.live) && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 interactive-focus px-1 py-0.5"
-                    >
-                      <ExternalLink size={18} aria-hidden="true" />
-                      <span className="text-sm">Live Demo</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
+              {tab.label}
+            </button>
           ))}
         </div>
 
-        {/* Other Projects */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.filter((p) => !p.featured).map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group bg-white dark:bg-dark-700 rounded-lg overflow-hidden shadow-md hover:shadow-lg ring-1 ring-slate-200/80 dark:ring-dark-600 hover:ring-primary-300/60 dark:hover:ring-primary-500/40 transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-              onClick={() => openModal(project)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  openModal(project);
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label={`${project.title} 프로젝트 상세 보기`}
-            >
-              {/* Project Image */}
-              <div className="relative h-48 bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/20 dark:to-primary-800/20">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {project.thumbnail ? (
-                    <img
-                      src={project.thumbnail}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="text-6xl">🚀</div>
-                  )}
-                </div>
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
-              </div>
-              {/* Project Content */}
-              <div className="p-4">
-                <h3 className="text-lg font-bold text-dark-900 dark:text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-dark-600 dark:text-dark-300 mb-3 line-clamp-2">
-                  {project.description}
-                </p>
+        {featuredProjects.length > 0 && (
+          <div className="mb-14 md:mb-20">
+            <h3 className="project-section-label mb-6 md:mb-8">
+              주요 프로젝트
+            </h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 min-w-0">
+              {featuredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  featured
+                  index={index}
+                  onOpen={openModal}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-1 bg-slate-100 dark:bg-dark-600 text-slate-700 dark:text-slate-200 rounded-md text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 bg-gray-100 dark:bg-dark-600 text-gray-700 dark:text-gray-300 rounded text-xs">
-                      +{project.technologies.length - 3}
-                    </span>
-                  )}
-                </div>
+        {otherProjects.length > 0 && (
+          <div>
+            {featuredProjects.length > 0 && (
+              <h3 className="project-section-label mb-6 md:mb-8">
+                기타 프로젝트
+              </h3>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 min-w-0">
+              {otherProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  onOpen={openModal}
+                />
+              ))}
+            </div>
+          </div>
+        )}
 
-                {/* Project Links */}
-                <div
-                  className="flex gap-3"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {hasValidLink(project.github) && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 interactive-focus p-1"
-                    >
-                      <Github size={16} aria-hidden="true" />
-                    </a>
-                  )}
-                  {hasValidLink(project.live) && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200 interactive-focus p-1"
-                    >
-                      <ExternalLink size={16} aria-hidden="true" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {filteredProjects.length === 0 && (
+          <p className="text-center text-dark-600 dark:text-dark-300 py-12">
+            선택한 분류에 해당하는 프로젝트가 없습니다.
+          </p>
+        )}
 
-        {/* View More Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mt-12"
+          className="text-center mt-12 md:mt-14"
         >
           <motion.a
             href="https://github.com/santarosalia"
@@ -246,7 +370,6 @@ const Projects = () => {
         </motion.div>
       </div>
 
-      {/* Project Modal */}
       <ProjectModal
         project={selectedProject}
         isOpen={isModalOpen}
