@@ -285,10 +285,10 @@ export const PROJECTS: Project[] = [
     description:
       "웹 기반 RPA 솔루션의 드래그앤드롭 방식의 RPA 프로세스 개발 툴을 개발했습니다.",
     period: "2022.01 – 2025.12",
-    thumbnail: "/worktro_logo.png",
+    thumbnail: "/worktro_thumbnail.png",
     duration: "2022 ~ 2025",
     teamSize: "10",
-    image: ["/worktro.gif"],
+    image: ["/worktro_thumbnail.png", "/worktro.gif"],
     technologies: [
       "Vue3",
       "TypeScript",
@@ -392,7 +392,7 @@ export const PROJECTS: Project[] = [
       "문서 OCR, 테이블 OCR, Canvas API를 활용한 문서 미리보기, 문서 레이블링, 학습 기능, OCR 테스트 기능을 구현한 프론트엔드 모듈을 개발했습니다.",
     period: "2023.09 – 2024.06",
     image: ["/aicenter.gif"],
-    thumbnail: "/worktro_logo.png",
+    thumbnail: "/aicenter.gif",
     technologies: ["Vue3", "TypeScript", "Canvas API", "PDF.js"],
     github: "",
     live: "",
@@ -421,7 +421,7 @@ export const PROJECTS: Project[] = [
       "Worktro와 결합하여 사용 가능한 프로세스 실행기입니다. C# WebView에 Vue3 + Vuetify로 UI를 구성하여 기존 백엔드에 새로운 화면을 제공하고, 배포된 프로세스를 즉시 실행할 수 있습니다.",
     period: "2024.01 – 2025.03",
     image: ["/workAssistant.gif"],
-    thumbnail: "/worktro_logo.png",
+    thumbnail: "/workAssistant.gif",
     technologies: ["C#", "WebView", "Vue3", "Vuetify", "TypeScript"],
     github: "",
     live: "",
@@ -451,7 +451,7 @@ export const PROJECTS: Project[] = [
       "Vue3 기반의 Worktro 디자인 시스템 컴포넌트 라이브러리입니다. 30개의 다양한 컴포넌트와 MUI 그리드 시스템을 참고한 레이아웃 시스템을 개발하여 일관된 UI/UX를 제공합니다.",
     period: "2024.06 – 2024.09",
     image: ["/wui.png"],
-    thumbnail: "/worktro_logo.png",
+    thumbnail: "/wui.png",
     technologies: ["Vue3", "TypeScript", "Vite", "NPM", "Nexus Repository"],
     github: "",
     duration: "2024.06 ~ 2024.09",
@@ -577,7 +577,7 @@ export const PROJECTS: Project[] = [
     description:
       "NestJS 백엔드와 Next.js 프론트엔드로 구현된 AI 기반 문서 추출·분석 플랫폼입니다. RabbitMQ로 문서 파싱 작업 상태를 비동기 수신하고, Redis·Prisma로 데이터를 관리하며, 외부 파싱 엔진과 연동해 PDF·이미지·오피스 문서에서 구조화 데이터를 추출합니다.",
     period: "2025.12 – 2026.02",
-    thumbnail: "/worktro_logo.png",
+    thumbnail: "/docuops1.png",
     duration: "2025.12 ~ 2026.02",
     teamSize: "4",
     technologies: [
