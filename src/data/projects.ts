@@ -5,6 +5,7 @@ export const PROJECTS: Project[] = [
     title: "MagicClaw",
     description:
       "MCP(Model Context Protocol) 서버를 등록·관리하고, 채팅 시 해당 도구를 활용하는 자체 호스팅 AI 에이전트 플랫폼입니다. NestJS 백엔드와 Next.js 웹 UI, 크로스 플랫폼 CLI를 통해 로컬 환경에서 에이전트를 구축·운영할 수 있습니다.",
+    period: "2026.02 – 2026.07",
     image: ["/magicclaw.png", "/magicclaw1.png", "/magicclaw2.png", "/magicclaw3.png"],
     duration: "2026.02 ~ 2026.07",
     teamSize: "1",
@@ -57,6 +58,7 @@ export const PROJECTS: Project[] = [
     title: "SLM Rewrite",
     description:
       "EDEN-TNS에서 레거시 AngularJS·Spring 기반 영업/서비스 시스템(SLM)을 pnpm 모노레포의 Next.js + NestJS + Prisma + PostgreSQL 스택으로 재구축한 프로젝트입니다. 풀스택으로 레거시 마이그레이션과 LangChain 기반 AI 채팅·purpose invoke 기능을 담당했습니다.",
+    period: "2026.08 – Present",
     image: [],
     thumbnail: "",
     technologies: [
@@ -90,6 +92,7 @@ export const PROJECTS: Project[] = [
     title: "Hybrid RAG",
     description:
       "Parser 결과를 PostgreSQL에 적재하고 Dense(pgvector)+Sparse(FTS/Kiwi) 하이브리드 검색 → rerank → 출처 기반 LLM 답변을 제공하는 RAG API (EDEN-TNS)",
+    period: "2026.09 – Present",
     image: [],
     thumbnail: "",
     technologies: [
@@ -126,6 +129,7 @@ export const PROJECTS: Project[] = [
     title: "Chat Agent",
     description:
       "NestJS+Next.js 모노레포 LangGraph RAG 채팅 에이전트. 외부 RAG retrieve·세션·SSE 스트리밍, Langfuse 트레이싱 (EDEN-TNS)",
+    period: "2026.09 – Present",
     image: [],
     thumbnail: "",
     technologies: [
@@ -161,6 +165,7 @@ export const PROJECTS: Project[] = [
     title: "Langfuse Runner",
     description:
       "Langfuse dataset을 Experiment runner SDK로 돌리는 NestJS 서비스. 웹훅/API로 chat-agent 평가 실행 (EDEN-TNS)",
+    period: "2026.09 – Present",
     image: [],
     thumbnail: "",
     technologies: ["TypeScript", "NestJS", "Langfuse", "Docker"],
@@ -187,6 +192,7 @@ export const PROJECTS: Project[] = [
     title: "메랜파티 - 메이플랜드 파티 매칭 플랫폼",
     description:
       "메이플랜드 게임 유저들을 위한 실시간 파티 사냥 매칭 커뮤니티 서비스입니다. WebSocket과 Redis Pub/Sub을 활용한 마이크로서비스 아키텍처로 실시간 알림과 파티 매칭 기능을 제공합니다.",
+    period: "2025.10 – 2025.10",
     thumbnail: "/maparty.png",
     teamSize: "1",
     image: ["/maparty.png", "/maparty_demo1.png"],
@@ -242,6 +248,7 @@ export const PROJECTS: Project[] = [
     title: "Worktro RPA 솔루션 개발",
     description:
       "웹 기반 RPA 솔루션의 드래그앤드롭 방식의 RPA 프로세스 개발 툴을 개발했습니다.",
+    period: "2022.01 – 2025.12",
     thumbnail: "/worktro_logo.png",
     duration: "2022 ~ 2025",
     teamSize: "10",
@@ -280,6 +287,7 @@ export const PROJECTS: Project[] = [
     title: "AI-Agent 솔루션 개발",
     description:
       "Vue3 + NestJS 기반의 AI 인사 검증 솔루션입니다. 문서 추출, 표절검사, 주요부분 하이라이트, 인터뷰 질문생성 기능을 제공하여 채용 프로세스를 효율적으로 지원합니다.",
+    period: "2024.03 – 2025.06",
     image: [],
     thumbnail: "",
     technologies: [
@@ -315,6 +323,7 @@ export const PROJECTS: Project[] = [
     title: "크롬 확장프로그램 개발",
     description:
       "Worktro와 함께 사용하는 크롬 확장프로그램으로, 웹 엘리먼트 선택자 추출, 사용자 액션 프로세스화, CDP Session을 통한 브라우저 자동화 기능을 구현했습니다.",
+    period: "2023.06 – 2024.12",
     image: ["/selector.gif", "/browserRecorder.gif"],
     thumbnail: "",
     technologies: ["Chrome API", "JavaScript", "TypeScript", "CDP", "DOM API"],
@@ -345,6 +354,7 @@ export const PROJECTS: Project[] = [
     title: "OCR 프론트엔드 개발",
     description:
       "문서 OCR, 테이블 OCR, Canvas API를 활용한 문서 미리보기, 문서 레이블링, 학습 기능, OCR 테스트 기능을 구현한 프론트엔드 모듈을 개발했습니다.",
+    period: "2023.09 – 2024.06",
     image: ["/aicenter.gif"],
     thumbnail: "/worktro_logo.png",
     technologies: ["Vue3", "TypeScript", "Canvas API", "PDF.js"],
@@ -373,6 +383,7 @@ export const PROJECTS: Project[] = [
     title: "Work Assistant 프로세스 실행기",
     description:
       "Worktro와 결합하여 사용 가능한 프로세스 실행기입니다. C# WebView에 Vue3 + Vuetify로 UI를 구성하여 기존 백엔드에 새로운 화면을 제공하고, 배포된 프로세스를 즉시 실행할 수 있습니다.",
+    period: "2024.01 – 2025.03",
     image: ["/workAssistant.gif"],
     thumbnail: "/worktro_logo.png",
     technologies: ["C#", "WebView", "Vue3", "Vuetify", "TypeScript"],
@@ -402,6 +413,7 @@ export const PROJECTS: Project[] = [
     title: "WUI 디자인 컴포넌트 라이브러리",
     description:
       "Vue3 기반의 Worktro 디자인 시스템 컴포넌트 라이브러리입니다. 30개의 다양한 컴포넌트와 MUI 그리드 시스템을 참고한 레이아웃 시스템을 개발하여 일관된 UI/UX를 제공합니다.",
+    period: "2024.06 – 2024.09",
     image: ["/wui.png"],
     thumbnail: "/worktro_logo.png",
     technologies: ["Vue3", "TypeScript", "Vite", "NPM", "Nexus Repository"],
@@ -436,6 +448,7 @@ export const PROJECTS: Project[] = [
     title: "홀리심볼 타이머",
     description:
       "메이플스토리 홀리심볼 스킬 쿨다운을 관리하는 일렉트론 기반 타이머 앱입니다. 웹뷰로 구성된 UI와 백그라운드 단축키 감지 기능을 통해 게임 중에도 편리하게 타이머를 리셋할 수 있습니다.",
+    period: "2025.06 – 2025.06",
     image: [],
     duration: "2025.06 ~ 2025.06",
     teamSize: "1",
@@ -475,6 +488,7 @@ export const PROJECTS: Project[] = [
     title: "실시간 멀티플레이 테트리스 게임",
     description:
       "NestJS 백엔드와 React + Pixi.js 프론트엔드로 구현된 실시간 멀티플레이 테트리스 게임입니다. Redis를 활용한 실시간 게임 상태 동기화와 Matter.js 물리 엔진을 통한 게임 로직을 구현했습니다.",
+    period: "2024.08 – 2024.12",
     thumbnail: "",
     technologies: [
       "NestJS",
@@ -526,6 +540,7 @@ export const PROJECTS: Project[] = [
     title: "문서 추출 플랫폼 개발",
     description:
       "NestJS 백엔드와 Next.js 프론트엔드로 구현된 AI 기반 문서 추출·분석 플랫폼입니다. RabbitMQ로 문서 파싱 작업 상태를 비동기 수신하고, Redis·Prisma로 데이터를 관리하며, 외부 파싱 엔진과 연동해 PDF·이미지·오피스 문서에서 구조화 데이터를 추출합니다.",
+    period: "2025.12 – 2026.02",
     thumbnail: "/worktro_logo.png",
     duration: "2025.12 ~ 2026.02",
     teamSize: "4",

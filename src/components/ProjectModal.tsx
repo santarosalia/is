@@ -163,7 +163,9 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                   <div className="grid md:grid-cols-3 gap-4 mb-6">
                     <div className="flex items-center gap-2 text-dark-600 dark:text-dark-300">
                       <Calendar size={16} />
-                      <span className="text-sm">{project.duration}</span>
+                      <span className="text-sm">
+                        {project.period || project.duration}
+                      </span>
                     </div>
                     <div className="flex items-center gap-2 text-dark-600 dark:text-dark-300">
                       <Code size={16} />

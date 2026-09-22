@@ -1,6 +1,7 @@
 export interface Project {
     title: string;
     description: string;
+    period: string;
     thumbnail: string;
     image: string[];
     technologies: string[];
