@@ -14,7 +14,7 @@ const Header = () => {
 
       // 스크롤이 맨 위에 있거나 위로 스크롤할 때는 헤더를 보이게
       if (currentScrollY <= 0) {
-        setIsVisible(false);
+        setIsVisible(true);
       } else if (currentScrollY < lastScrollY) {
         // 위로 스크롤할 때
         setIsVisible(true);
