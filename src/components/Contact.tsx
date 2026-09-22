@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, MapPin, Send, Github } from 'lucide-react';
+import { CONTACT_EMAIL } from '../constants/site';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +13,15 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // 여기에 폼 제출 로직을 추가할 수 있습니다
-    console.log('Form submitted:', formData);
+    const { name, email, subject, message } = formData;
+    const body = [
+      `보낸 사람: ${name}`,
+      `회신 주소: ${email}`,
+      '',
+      message,
+    ].join('\n');
+
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -27,27 +35,18 @@ const Contact = () => {
     {
       icon: Mail,
       title: '이메일',
-      value: 'donghyun.kim@example.com',
-      href: 'mailto:donghyun.kim@example.com',
-    },
-    {
-      icon: Phone,
-      title: '전화번호',
-      value: '+82 10-1234-5678',
-      href: 'tel:+821012345678',
+      value: CONTACT_EMAIL,
+      href: `mailto:${CONTACT_EMAIL}`,
     },
     {
       icon: MapPin,
       title: '위치',
       value: '서울, 대한민국',
-      href: '#',
     },
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com/santarosalia', label: 'GitHub' },
   ];
 
   return (
@@ -70,7 +69,6 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -110,7 +108,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-800 text-dark-900 dark:text-white"
-                    placeholder="hello@example.com"
+                    placeholder="your@email.com"
                   />
                 </div>
               </div>
@@ -151,12 +149,11 @@ const Contact = () => {
                 className="w-full btn-primary flex items-center justify-center gap-2"
               >
                 <Send size={18} />
-                메시지 보내기
+                이메일 앱으로 보내기
               </motion.button>
             </form>
           </motion.div>
 
-          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -169,33 +166,51 @@ const Contact = () => {
                 연락처 정보
               </h3>
               <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <motion.a
-                    key={info.title}
-                    href={info.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-4 p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
-                  >
-                    <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
-                      <info.icon size={20} className="text-primary-600 dark:text-primary-400" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-dark-900 dark:text-white">
-                        {info.title}
-                      </h4>
-                      <p className="text-dark-600 dark:text-dark-300">
-                        {info.value}
-                      </p>
-                    </div>
-                  </motion.a>
-                ))}
+                {contactInfo.map((info, index) => {
+                  const content = (
+                    <>
+                      <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
+                        <info.icon size={20} className="text-primary-600 dark:text-primary-400" />
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-dark-900 dark:text-white">
+                          {info.title}
+                        </h4>
+                        <p className="text-dark-600 dark:text-dark-300">
+                          {info.value}
+                        </p>
+                      </div>
+                    </>
+                  );
+
+                  return info.href ? (
+                    <motion.a
+                      key={info.title}
+                      href={info.href}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
+                    >
+                      {content}
+                    </motion.a>
+                  ) : (
+                    <motion.div
+                      key={info.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-4 p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm"
+                    >
+                      {content}
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Social Links */}
             <div>
               <h4 className="text-xl font-bold text-dark-900 dark:text-white mb-4">
                 소셜 미디어
@@ -213,6 +228,7 @@ const Contact = () => {
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.1, y: -2 }}
                     className="p-4 bg-white dark:bg-dark-700 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 text-dark-600 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400"
+                    aria-label={social.label}
                   >
                     <social.icon size={24} />
                   </motion.a>
@@ -220,7 +236,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Availability */}
             <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl p-6 text-white">
               <h4 className="text-xl font-bold mb-2">현재 상태</h4>
               <p className="mb-4">
@@ -239,4 +254,4 @@ const Contact = () => {
   );
 };
 
-export default Contact; 
+export default Contact;

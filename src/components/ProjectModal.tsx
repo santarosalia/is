@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Github, Calendar, Code, Users } from "lucide-react";
 import type { Project } from "../types/project";
 import { useEffect, useState } from "react";
+import { hasValidLink } from "../constants/site";
 
 const VIDEO_EXTENSIONS = /\.(mov|mp4|webm|ogg)$/i;
 
@@ -18,10 +19,12 @@ interface ProjectModalProps {
 const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [direction, setDirection] = useState(0); // -1: left, 1: right
+  const [loadedVideos, setLoadedVideos] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     setCurrentImage(0);
     setDirection(0);
+    setLoadedVideos({});
   }, [project?.title]);
 
   if (!project) return null;
@@ -132,7 +135,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                 <div className="p-6 md:p-8">
                   {/* Project Links */}
                   <div className="flex gap-4 mb-6">
-                    {project.github && (
+                    {hasValidLink(project.github) && (
                       <a
                         href={project.github}
                         target="_blank"
@@ -143,7 +146,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                         <span>GitHub</span>
                       </a>
                     )}
-                    {project.live && (
+                    {hasValidLink(project.live) && (
                       <a
                         href={project.live}
                         target="_blank"
@@ -198,26 +201,61 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                               mode="wait"
                             >
                               {isVideoSrc(activeMedia) ? (
-                                <motion.video
-                                  key={activeMedia}
-                                  src={activeMedia}
-                                  className="absolute inset-0 w-full h-full object-contain"
-                                  controls
-                                  autoPlay
-                                  loop
-                                  muted
-                                  playsInline
-                                  custom={direction}
-                                  variants={variants}
-                                  initial="enter"
-                                  animate="center"
-                                  exit="exit"
-                                  transition={{
-                                    type: "spring",
-                                    stiffness: 300,
-                                    damping: 30,
-                                  }}
-                                />
+                                loadedVideos[activeMedia] ? (
+                                  <motion.video
+                                    key={activeMedia}
+                                    src={activeMedia}
+                                    className="absolute inset-0 w-full h-full object-contain"
+                                    controls
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    custom={direction}
+                                    variants={variants}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    transition={{
+                                      type: "spring",
+                                      stiffness: 300,
+                                      damping: 30,
+                                    }}
+                                  />
+                                ) : (
+                                  <motion.button
+                                    key={`${activeMedia}-poster`}
+                                    type="button"
+                                    onClick={() =>
+                                      setLoadedVideos((prev) => ({
+                                        ...prev,
+                                        [activeMedia]: true,
+                                      }))
+                                    }
+                                    className="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-3 bg-gray-200 dark:bg-dark-600 text-dark-700 dark:text-dark-200"
+                                    custom={direction}
+                                    variants={variants}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    transition={{
+                                      type: "spring",
+                                      stiffness: 300,
+                                      damping: 30,
+                                    }}
+                                  >
+                                    {project.thumbnail ? (
+                                      <img
+                                        src={project.thumbnail}
+                                        alt={`${project.title} 미리보기`}
+                                        className="absolute inset-0 w-full h-full object-cover opacity-40"
+                                      />
+                                    ) : null}
+                                    <span className="relative z-10 px-4 py-2 rounded-lg bg-primary-600 text-white text-sm font-medium">
+                                      데모 영상 재생
+                                    </span>
+                                  </motion.button>
+                                )
                               ) : (
                                 <motion.img
                                   key={activeMedia}

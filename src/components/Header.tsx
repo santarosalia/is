@@ -38,6 +38,7 @@ const Header = () => {
     { name: "소개", sectionId: "about" },
     { name: "프로젝트", sectionId: "projects" },
     { name: "기술", sectionId: "skills" },
+    { name: "연락", sectionId: "contact" },
   ];
 
   const onClickMenu = (
