@@ -78,7 +78,7 @@ const Header = () => {
                 {navItems.map((item) => (
                   <motion.a
                     key={item.name}
-                    href={""}
+                    href={`#${item.sectionId}`}
                     onClick={(e) => onClickMenu(e, item.sectionId)}
                     whileHover={{ y: -2, scale: 1.08 }}
                     className="text-gray-800  hover:text-gray-900 hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative"
@@ -143,6 +143,7 @@ const Header = () => {
                   {navItems.map((item) => (
                     <a
                       key={item.name}
+                      href={`#${item.sectionId}`}
                       onClick={(e) => onClickMenu(e, item.sectionId)}
                       className="text-gray-900  hover:text-black hover:drop-shadow-[0_0_12px_rgba(180,180,255,1)] transition-all duration-200 font-medium relative ml-4 cursor-pointer"
                     >
