@@ -54,6 +54,39 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    title: "SLM Rewrite",
+    description:
+      "EDEN-TNS에서 레거시 AngularJS·Spring 기반 영업/서비스 시스템(SLM)을 pnpm 모노레포의 Next.js + NestJS + Prisma + PostgreSQL 스택으로 재구축한 프로젝트입니다. 풀스택으로 레거시 마이그레이션과 LangChain 기반 AI 채팅·purpose invoke 기능을 담당했습니다.",
+    image: [],
+    thumbnail: "",
+    technologies: [
+      "TypeScript",
+      "Next.js",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "LangChain",
+      "pnpm",
+    ],
+    github: "",
+    live: "",
+    featured: true,
+    detailedDescription:
+      "Sales Lifecycle Manager(SLM)는 영업·서비스 업무를 관리하는 레거시 시스템입니다. AngularJS와 Spring으로 구성된 기존 코드베이스를 TypeScript 기반 pnpm 모노레포로 전환하고, Next.js 프론트엔드와 NestJS 백엔드를 Prisma·PostgreSQL로 연동했습니다. LangChain을 활용한 AI 채팅과 purpose invoke 기능으로 업무 보조 에이전트를 구현했습니다.",
+    features: [
+      "레거시 AngularJS·Spring → Next.js + NestJS 마이그레이션",
+      "pnpm workspace 모노레포 구조",
+      "Prisma + PostgreSQL 데이터 계층",
+      "LangChain 기반 AI 채팅",
+      "purpose invoke 기반 AI 업무 보조",
+    ],
+    challenges: [
+      "레거시 도메인·API 점진적 마이그레이션",
+      "모노레포 프론트·백엔드 공유 타입 및 빌드 파이프라인",
+      "LangChain purpose invoke와 기존 업무 흐름 통합",
+    ],
+  },
+  {
     title: "메랜파티 - 메이플랜드 파티 매칭 플랫폼",
     description:
       "메이플랜드 게임 유저들을 위한 실시간 파티 사냥 매칭 커뮤니티 서비스입니다. WebSocket과 Redis Pub/Sub을 활용한 마이크로서비스 아키텍처로 실시간 알림과 파티 매칭 기능을 제공합니다.",
