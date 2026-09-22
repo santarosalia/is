@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
       "AngularJS·Spring 기반 영업/서비스 SLM은 프레임워크 EOL·이중 스택 유지로 신규 AI·UI 기능 추가 비용이 커짐. 운영 중단 없이 strangler 전환이 필요했고, 사내 배포 제약으로 외부 SaaS 대신 자체 호스팅 스택이 요구됨.",
     role: "풀스택 단독 — pnpm 모노레포 스캐폴딩, Next.js UI, NestJS API, Prisma 스키마, LangChain AI 채팅·purpose invoke. 레거시 도메인 분석, 마이그레이션 현황 기준 strangler 경로·stored procedure 단계적 이전 계획 정리.",
     approach:
-      "모노레포·strangler·AI invoke를 단계 분리.\npnpm monorepo — Next.js + NestJS + Prisma·PostgreSQL 공유 타입 단일 배포\n마이그레이션 현황 기준 strangler — 도메인 단위 점진 전환, 레거시 AngularJS·Spring API 병행\npurpose invoke — LangChain 업무 화면 AI 보조, Hybrid RAG/chat-agent와 분리된 SLM 내장 경로\nTrade-off: big-bang 대신 점진 전환 — 이중 코드베이스와 이중 배포 유지 vs 운영 중단·롤백 리스크 절감",
+      "- pnpm monorepo: Next.js + NestJS + Prisma·PostgreSQL 공유 타입 단일 배포\n- 마이그레이션 현황 기준 strangler: 도메인 단위 점진 전환, 레거시 AngularJS·Spring API 병행\n- purpose invoke: LangChain 업무 화면 AI 보조, Hybrid RAG/chat-agent와 분리된 SLM 내장 경로\nTrade-off: big-bang 대신 점진 전환; 이중 코드베이스·이중 배포 유지 vs 운영 중단·롤백 리스크 절감",
     result:
       "모노레포·Prisma 데이터 계층 전환 및 strangler 1차 도메인 스테이징 병행 운영 확인. LangChain purpose invoke는 시나리오 테스트로 동작 검증(정량 KPI·마이그레이션 % 미기재). stored procedure 단계적 이전은 마이그레이션 현황 기준으로 진행 중.",
     architecture: `[Next.js App] ──REST──▶ [NestJS API] ──Prisma──▶ [PostgreSQL]
@@ -123,7 +123,7 @@ export const PROJECTS: Project[] = [
       "사내 문서 검색에서 dense-only는 고유명사·코드 recall이 약하고 sparse-only는 paraphrase recall이 떨어짐. Parser 경계 밖 원본 파싱, 청킹·검색·citation LLM은 단일 RAG API가 소유해야 함.",
     role: "RAG 파이프라인 설계·구현 — ParseResponse 적재, Kiwi FTS·pgvector hybrid, RRF·rerank, FastAPI `/v1/retrieve`·`/v1/query`, Docker 스테이징.",
     approach:
-      "Dense k50 + Sparse k50 → RRF → rerank top-5 → table_row parent expand → citation LLM.\nPostgreSQL pgvector + Kiwi FTS — dense·sparse·메타 단일 DB 트랜잭션\nRRF hybrid fusion — linear fusion 대신 rank-only RRF(k=60)로 scale-invariant 융합\nBGE-M3 + reranker — self-host bi-encoder + cross-encoder rerank\nTrade-off: production hybrid(RRF) 대 dense-only — Kiwi sparse·table expand·TEI 운영 복잡도 vs keyword+semantic recall",
+      "- PostgreSQL pgvector + Kiwi FTS: dense·sparse·메타 단일 DB 트랜잭션\n- RRF hybrid fusion: linear fusion 대신 rank-only RRF(k=60)로 scale-invariant 융합\n- BGE-M3 + reranker: self-host bi-encoder + cross-encoder rerank\nTrade-off: production hybrid(RRF) vs dense-only; Kiwi sparse·table expand·TEI 운영 복잡도 vs keyword+semantic recall",
     result:
       "Docker 스테이징에서 ingest→hybrid retrieve→citation 답변 end-to-end 확인. fusion golden set로 hybrid·dense·sparse 샘플 비교, citation 포맷 일관성 수동 점검(공개 벤치마크 수치 미표기).",
     architecture: `[Parser Service] ──▶ parse_json ──▶ [PostgreSQL]
@@ -172,7 +172,7 @@ export const PROJECTS: Project[] = [
       "Hybrid RAG `/v1/retrieve`를 업무 채팅에 붙이려면 multi-turn 세션, SSE 스트리밍, retrieve 품질(후속 질문·부족 컨텍스트)과 observability가 동시에 필요.",
     role: "NestJS+Next.js pnpm 모노레포 — LangGraph 파이프라인, retrieve-only RAG 연동, Prisma append-only 세션, SSE, Langfuse trace·dataset eval 연계.",
     approach:
-      "LangGraph: load_history → prepare → retrieve ⇄ evaluate → answer.\nretrieve-only 연동 — RAG `/v1/query` 위임 없이 chat-agent가 답변·citations 소유\nLangGraph 파이프라인 — ChatService 단일 흐름을 그래프 오케스트레이션으로 이전\nsufficiency evaluator — 평가기 JSON으로 re-retrieve(최대 3회, top_k 5→10→20)\nTrade-off: evaluate LLM·Langfuse 오버헤드 vs retrieve 품질·회귀 디버깅 가시성",
+      "- retrieve-only 연동: RAG `/v1/query` 위임 없이 chat-agent가 답변·citations 소유\n- LangGraph 파이프라인: ChatService 단일 흐름을 그래프 오케스트레이션으로 이전\n- sufficiency evaluator: 평가기 JSON으로 re-retrieve(최대 3회, top_k 5→10→20)\nTrade-off: evaluate LLM·Langfuse 오버헤드 vs retrieve 품질·회귀 디버깅 가시성",
     result:
       "스테이징에서 채팅→retrieve-evaluate 루프→SSE 응답 end-to-end 확인. Langfuse trace·session 상관 및 Runner dataset experiment 트리거·기록을 시나리오 테스트로 검증(정량 SLA·정확도 % 미기재).",
     architecture: `[Next.js UI] ──SSE──▶ [NestJS + LangGraph]
