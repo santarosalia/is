@@ -103,7 +103,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Hybrid RAG",
     description:
-      "사내 문서 RAG — Parser 결과를 PostgreSQL에 적재하고 Dense(pgvector)+Sparse(FTS/Kiwi) 하이브리드 검색 → rerank → 출처 기반 LLM 답변을 제공하는 RAG API",
+      "사내 문서 Hybrid RAG API — Dataset 실험 복합 30문항 평균 점수 0.94·응답 ~2.8s(단순 30: 0.91·~2.4s), 에러 0",
     period: "2026.09 – Present",
     image: [],
     thumbnail: "",
@@ -125,7 +125,7 @@ export const PROJECTS: Project[] = [
     approach:
       "- PostgreSQL pgvector + Kiwi FTS: dense·sparse·메타 단일 DB 트랜잭션\n- RRF hybrid fusion: linear fusion 대신 rank-only RRF(k=60)로 scale-invariant 융합\n- BGE-M3 + reranker: self-host bi-encoder + cross-encoder rerank\nTrade-off: production hybrid(RRF) vs dense-only; Kiwi sparse·table expand·TEI 운영 복잡도 vs keyword+semantic recall",
     result:
-      "Docker 스테이징에서 ingest→hybrid retrieve→citation 답변 end-to-end 확인. fusion golden set로 hybrid·dense·sparse 샘플 비교, citation 포맷 일관성 수동 점검(공개 벤치마크 수치 미표기).",
+      "Docker 스테이징에서 ingest→hybrid retrieve→citation 답변 end-to-end 확인. Langfuse dataset 실험(Asia/Seoul): 복합 30문항 평균 점수 0.94·평균 응답 ~2.8s·에러 0(n=30); 단순 30문항 0.91·~2.4s·에러 0(n=30). fusion golden set로 hybrid·dense·sparse 샘플 비교, citation 포맷 일관성 수동 점검.",
     architecture: `[Parser Service] ──▶ parse_json ──▶ [PostgreSQL]
                          ├── pgvector (BGE-M3 dense)
                          └── Kiwi FTS (sparse)
@@ -152,7 +152,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Chat Agent",
     description:
-      "회사 프로젝트 — NestJS+Next.js 모노레포 LangGraph RAG 채팅 에이전트. 외부 RAG retrieve·세션·SSE 스트리밍, Langfuse 트레이싱",
+      "Hybrid RAG 연동 LangGraph 채팅 에이전트 — Dataset 실험 복합 30문항 평균 점수 0.94, 에러 0, 응답 ~2.8s",
     period: "2026.09 – Present",
     image: [],
     thumbnail: "",
@@ -174,7 +174,7 @@ export const PROJECTS: Project[] = [
     approach:
       "- retrieve-only 연동: RAG `/v1/query` 위임 없이 chat-agent가 답변·citations 소유\n- LangGraph 파이프라인: ChatService 단일 흐름을 그래프 오케스트레이션으로 이전\n- sufficiency evaluator: 평가기 JSON으로 re-retrieve(최대 3회, top_k 5→10→20)\nTrade-off: evaluate LLM·Langfuse 오버헤드 vs retrieve 품질·회귀 디버깅 가시성",
     result:
-      "스테이징에서 채팅→retrieve-evaluate 루프→SSE 응답 end-to-end 확인. Langfuse trace·session 상관 및 Runner dataset experiment 트리거·기록을 시나리오 테스트로 검증(정량 SLA·정확도 % 미기재).",
+      "스테이징에서 채팅→retrieve-evaluate 루프→SSE 응답 end-to-end 확인. Hybrid RAG·Chat Agent 연동 Langfuse dataset 실험(Asia/Seoul): 복합 30문항 평균 점수 0.94·평균 응답 ~2.8s·에러 0(n=30); 공문체·민원체 20항목 0.95·~2.5s·에러 0(n=20). Langfuse trace·session 상관 및 Runner experiment 기록 연동 검증.",
     architecture: `[Next.js UI] ──SSE──▶ [NestJS + LangGraph]
                             load_history → prepare → retrieve ⇄ evaluate → answer
                             ├── POST /v1/retrieve ──▶ [Hybrid RAG]
